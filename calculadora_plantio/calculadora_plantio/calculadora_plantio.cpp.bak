@@ -1,0 +1,220 @@
+#include <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<wx/wx.h>
+#include <wx/translation.h>
+#include "regulagem.hpp"
+#include "framemain_base.hpp"
+
+class MyApp : public wxApp
+{
+public:
+    bool OnInit() override;
+};
+
+wxIMPLEMENT_APP(MyApp);
+
+enum
+{
+    ID_Hello = 1
+};
+
+bool MyApp::OnInit()
+{
+    frameMain* frame = new frameMain(NULL, wxID_ANY, "Calcular Regulagem da Plantadeira", wxDefaultPosition,
+        wxSize(470, 430), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL , wxFrameNameStr);
+    frame->Show(true);
+    return true;
+}
+
+
+frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
+    const wxPoint& pos, const wxSize& size, long style, const wxString& name) : wxFrame()
+{
+    std::setlocale(LC_ALL, "Portuguese");
+
+    if (!Create(parent, id, title, pos, size, style, name))
+        return;
+
+    auto* panelMain = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+
+    auto* panelSzMain = new wxBoxSizer(wxVERTICAL);
+
+    auto* panelGeral = new wxPanel(panelMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxSUNKEN_BORDER);
+    panelSzMain->Add(panelGeral, wxSizerFlags().Center().Border(wxALL));
+
+    auto* panelSzGeral = new wxBoxSizer(wxHORIZONTAL);
+
+    auto* panelCult = new wxPanel(panelGeral, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzGeral->Add(panelCult, wxSizerFlags().Center().Border(wxALL));
+
+    auto* panelSzCult = new wxBoxSizer(wxVERTICAL);
+
+    labelCult = new wxStaticText(panelCult, wxID_ANY, "Cultura: ");
+    panelSzCult->Add(labelCult, wxSizerFlags().Center().Border(wxALL));
+
+    boxCult = new wxChoice(panelCult, wxID_ANY);
+    boxCult->Append("Aveia");
+    boxCult->Append("Cevada");
+    boxCult->Append(wxString::FromUTF8("\x46\x65\x69\x6a\xc3\xa3\x6f")); /* Palavra "Feijão" codificada em utf8 por causa do acento */
+    boxCult->Append("Milheto");
+    boxCult->Append("Milho");
+    boxCult->Append("Soja");
+    boxCult->Append("Trigo");
+    boxCult->Append("Triguilho");
+    boxCult->Append("Triticalhe");
+    boxCult->Append("Outro...");
+    panelSzCult->Add(boxCult, wxSizerFlags().Center().Border(wxALL));
+    panelCult->SetSizerAndFit(panelSzCult);
+
+    auto* panelEspc = new wxPanel(panelGeral, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzGeral->Add(panelEspc, wxSizerFlags().Center().Border(wxALL));
+
+    auto* panelSzEspc = new wxBoxSizer(wxVERTICAL);
+
+    labelEspc = new wxStaticText(panelEspc, wxID_ANY, wxString::FromUTF8("\x45\x73\x70\x61\xc3\xa7\x61\x6d\x65\x6e\x74\x6f\x20\x64\x61\x73\x20\x6c\x69\x6e\x68\x61\x73\x20\x28\x63\x6d\x29\x3a")); /* Frase "Espaçamento das linhas (cm):" codificada em utf8 por causa do cedilha */
+    panelSzEspc->Add(labelEspc, wxSizerFlags().Center().Border(wxALL));
+
+    inEspc = new wxSpinCtrlDouble(panelEspc);
+    panelSzEspc->Add(inEspc, wxSizerFlags().Center().Border(wxALL));
+    panelEspc->SetSizerAndFit(panelSzEspc);
+
+    auto* panelTiro = new wxPanel(panelGeral, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzGeral->Add(panelTiro, wxSizerFlags().Center().Border(wxALL));
+
+    auto* panelSzTiro = new wxBoxSizer(wxVERTICAL);
+
+    labelTiro = new wxStaticText(panelTiro, wxID_ANY, "Tiro (m):");
+    panelSzTiro->Add(labelTiro, wxSizerFlags().Center().Border(wxALL));
+
+    inTiro = new wxSpinCtrlDouble(panelTiro);
+    panelSzTiro->Add(inTiro, wxSizerFlags().Center().Border(wxALL));
+    panelTiro->SetSizerAndFit(panelSzTiro);
+    panelGeral->SetSizerAndFit(panelSzGeral);
+
+    auto* panelSmt = new wxPanel(panelMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzMain->Add(panelSmt, wxSizerFlags().Center().Border(wxALL));
+
+    auto* panelSzSmt = new wxBoxSizer(wxHORIZONTAL);
+
+    auto* panelInSmt = new wxPanel(panelSmt, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxSUNKEN_BORDER);
+    panelSzSmt->Add(panelInSmt, wxSizerFlags().Expand().Border(wxALL));
+
+    auto* panelSzInSmt = new wxBoxSizer(wxVERTICAL);
+
+    tituloSmt = new wxStaticText(panelInSmt, wxID_ANY, "Semente");
+    panelSzInSmt->Add(tituloSmt, wxSizerFlags().Center().Border(wxALL));
+
+    auto* boxInSmt = new wxBoxSizer(wxHORIZONTAL);
+
+    labelKghaSmt = new wxStaticText(panelInSmt, wxID_ANY, "Kg / Ha");
+    boxInSmt->Add(labelKghaSmt, wxSizerFlags().Border(wxALL));
+
+    inKgSmt = new wxSpinCtrlDouble(panelInSmt);
+    boxInSmt->Add(inKgSmt, wxSizerFlags().Border(wxALL));
+
+    panelSzInSmt->Add(boxInSmt, wxSizerFlags().Border(wxALL));
+    panelInSmt->SetSizerAndFit(panelSzInSmt);
+
+    auto* panelOutSmt = new wxPanel(panelSmt, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzSmt->Add(panelOutSmt, wxSizerFlags().Center().Border(wxALL));
+
+    auto* panelSzOutSmt = new wxBoxSizer(wxVERTICAL);
+
+    labelTituloResultadoSmt = new wxStaticText(panelOutSmt, wxID_ANY, "Gramas por tiro: (Semente)");
+    panelSzOutSmt->Add(labelTituloResultadoSmt, wxSizerFlags().Border(wxALL));
+
+    outSmt = new wxStaticText(panelOutSmt, wxID_ANY, "1234567890");
+    panelSzOutSmt->Add(outSmt, wxSizerFlags().Right().Border(wxALL));
+    panelOutSmt->SetSizerAndFit(panelSzOutSmt);
+    panelSmt->SetSizerAndFit(panelSzSmt);
+
+    auto* panelAdb = new wxPanel(panelMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzMain->Add(panelAdb, wxSizerFlags().Center().Border(wxALL));
+
+    auto* panelSzAdb = new wxBoxSizer(wxHORIZONTAL);
+
+    auto* panelInAdb = new wxPanel(panelAdb, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxSUNKEN_BORDER);
+    panelSzAdb->Add(panelInAdb, wxSizerFlags().Border(wxALL));
+
+    auto* panelSzInAdb = new wxBoxSizer(wxVERTICAL);
+
+    tituloAdb = new wxStaticText(panelInAdb, wxID_ANY, "Adubo");
+    panelSzInAdb->Add(tituloAdb, wxSizerFlags().Center().Border(wxALL));
+
+    auto* boxInAdb = new wxBoxSizer(wxHORIZONTAL);
+
+    labelKghaAdb = new wxStaticText(panelInAdb, wxID_ANY, "Kg / Ha");
+    boxInAdb->Add(labelKghaAdb, wxSizerFlags().Border(wxALL));
+
+    inKgAdb = new wxSpinCtrlDouble(panelInAdb);
+    boxInAdb->Add(inKgAdb, wxSizerFlags().Border(wxALL));
+
+    panelSzInAdb->Add(boxInAdb, wxSizerFlags().Border(wxALL));
+    panelInAdb->SetSizerAndFit(panelSzInAdb);
+
+    auto* panelOutAdb = new wxPanel(panelAdb, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzAdb->Add(panelOutAdb, wxSizerFlags().Border(wxALL));
+
+    auto* panelSzOutAdb = new wxBoxSizer(wxVERTICAL);
+
+    labelTituloResultadoAdb = new wxStaticText(panelOutAdb, wxID_ANY, "Gramas por tiro: (Adubo)");
+    panelSzOutAdb->Add(labelTituloResultadoAdb, wxSizerFlags().Border(wxALL));
+
+    outAdb = new wxStaticText(panelOutAdb, wxID_ANY, "1234567890");
+    panelSzOutAdb->Add(outAdb, wxSizerFlags().Right().Border(wxALL));
+    panelOutAdb->SetSizerAndFit(panelSzOutAdb);
+    panelAdb->SetSizerAndFit(panelSzAdb);
+
+    auto* panelHa = new wxPanel(panelMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzMain->Add(panelHa, wxSizerFlags().Center().Border(wxALL));
+
+    auto* panelSzHa = new wxBoxSizer(wxHORIZONTAL);
+
+    auto* panelInHa = new wxPanel(panelHa, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxSUNKEN_BORDER);
+    panelSzHa->Add(panelInHa, wxSizerFlags().Border(wxALL));
+
+    auto* boxInHa = new wxBoxSizer(wxVERTICAL);
+
+    labelHectares = new wxStaticText(panelInHa, wxID_ANY, "Hectares:");
+    boxInHa->Add(labelHectares, wxSizerFlags().Center().Border(wxALL));
+
+    inHa = new wxSpinCtrlDouble(panelInHa);
+    boxInHa->Add(inHa, wxSizerFlags().Border(wxALL));
+    panelInHa->SetSizerAndFit(boxInHa);
+
+    auto* panelOutHa = new wxPanel(panelHa, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzHa->Add(panelOutHa, wxSizerFlags().Border(wxALL));
+
+    auto* boxOutHa = new wxBoxSizer(wxVERTICAL);
+
+    labelPrevisao = new wxStaticText(panelHa, wxID_ANY, wxString::FromUTF8("\x50\x72\x65\x76\x69\x73\xc3\xa3\x6f\x3a")); /* Palavra "Previsão:" codificada em utf8 por causa do acento */
+    boxOutHa->Add(labelPrevisao, wxSizerFlags().Center().Border(wxALL));
+
+    outHa = new wxStaticText(panelOutHa, wxID_ANY, "01234567890");
+    boxOutHa->Add(outHa, wxSizerFlags().Border(wxALL));
+    panelOutHa->SetSizerAndFit(boxOutHa);
+    panelHa->SetSizerAndFit(panelSzHa);
+
+    auto* panelBtnCalc = new wxPanel(panelMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelSzMain->Add(panelBtnCalc, wxSizerFlags().Right().Bottom().Border(wxALL));
+
+    auto* panelSzBtnCalc = new wxBoxSizer(wxVERTICAL);
+
+    btnCalcular = new wxButton(panelBtnCalc, wxID_ANY, "Calcular");
+    panelSzBtnCalc->Add(btnCalcular, wxSizerFlags().Center().Right().Border(wxALL));
+    panelBtnCalc->SetSizerAndFit(panelSzBtnCalc);
+    panelMain->SetSizerAndFit(panelSzMain);
+
+    Centre(wxBOTH);
+
+
+    // Connect Events
+    btnCalcular->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frameMain::OnCalcularClick), NULL, this);
+}
+
+frameMain::~frameMain()
+{
+    // Disconnect Events
+    btnCalcular->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frameMain::OnCalcularClick), NULL, this);
+
+}
+
