@@ -1,5 +1,6 @@
 #include <wx/wx.h>
 #include <wx/wxprec.h>
+//#include <fmt/format.h>
 #include "regulagem.hpp"
 #include "framemain_base.hpp"
 
@@ -32,9 +33,18 @@ void frameMain::OnCalcularClick(wxCommandEvent& event)
     regulagem->setGramA(calcularGramasTiro( static_cast<float>(inKgAdb->GetValue()), regulagem) );
     regulagem->setGramS(calcularGramasTiro( static_cast<float>(inKgSmt->GetValue()), regulagem) );
 
+    // Calcular gasto previsto
+    float hectares{ static_cast<float>(inHa->GetValue()) };
+    std::array<float, 2> kgha { calcularQuilosHectare(regulagem) };
+    std::array<float, 2> kgtotal;
+    kgtotal[0] = hectares * kgha[0];
+    kgtotal[1] = hectares * kgha[1];
+    std::string previsao { std::to_string(kgtotal[0]) + " kg de semente e " + std::to_string(kgtotal[1]) + " kg de adubo." };
+
     // mostrando resultado
     outAdb->SetValue( std::to_string(regulagem->getGramAdb()) );
     outSmt->SetValue( std::to_string(regulagem->getGramSmt()) );
+    outHa->SetValue(previsao);
 }
 
 /*
@@ -256,7 +266,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelPrevisao = new wxStaticText(panelOutHa, wxID_ANY, wxString::FromUTF8("\x50\x72\x65\x76\x69\x73\xc3\xa3\x6f\x3a"));
     boxOutHa->Add(labelPrevisao, wxSizerFlags().Center().Border(wxALL));
 
-    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, "0 kg sementes e 0 kg adubo", wxDefaultPosition, wxDefaultSize, 0);
+    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, "0 kg sementes e 0 kg adubo", wxDefaultPosition, wxSize(300, -1), 0);
     boxOutHa->Add(outHa, wxSizerFlags().Border(wxALL));
     panelOutHa->SetSizerAndFit(boxOutHa);
     panelHa->SetSizerAndFit(boxHa);
@@ -291,4 +301,6 @@ frameMain::~frameMain()
      */
     delete regulagem;
     btnCalcular->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frameMain::OnCalcularClick), NULL, this);
+
 }
+
