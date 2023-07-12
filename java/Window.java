@@ -29,5 +29,6 @@ public class Window extends Regulagem{
 		Painel.add(LabelCult);
 		Janela.add(Painel);
 		Janela.setVisible(true);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
