@@ -1,8 +1,8 @@
 // Declaração da classe Regulagem e funções para calcular gramas/tiro e quilos/hectare
-#ifndef REGULAGEM_H
-#define REGULAGEM_H
+#pragma once
+
 #include <iostream>
-#include <locale.h>
+#include <locale>
 #include <cmath>
 #include <cstring>
 #include <string>
@@ -76,5 +76,3 @@ float calcularGramasTiro(float k, Regulagem* r);
  * 1 -> kg/ha de adubo
  */
 std::array<float, 2> calcularQuilosHectare(Regulagem* r);
-
-#endif

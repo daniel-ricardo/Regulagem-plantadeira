@@ -4,6 +4,7 @@
 
 #include "framemain_base.hpp"
 #include "regulagem.hpp"
+#include "tools.hpp"
 
 class calculadoraRegulagem : public wxApp
 {
@@ -35,11 +36,10 @@ void frameMain::OnCalcularClick(wxCommandEvent& event)
     regulagem->setGramS(calcularGramasTiro( static_cast<float>(inKgSmt->GetValue()), regulagem) );
 
     // mostrando resultado
-    outAdb->SetValue( std::format("{:.2f}", regulagem->getGramAdb()) );
-    outSmt->SetValue( std::format("{:.2f}", regulagem->getGramSmt()) );
-    outHa->SetValue( std::format("{:.2f} kg de semente e {:.2f} kg de adubo.",
-        static_cast<float>(inHa->GetValue()) * calcularQuilosHectare(regulagem)[0],
-        static_cast<float>(inHa->GetValue()) * calcularQuilosHectare(regulagem)[1] ) );
+    outAdb->SetValue( pontuarMilhares(regulagem->getGramAdb()) );
+    outSmt->SetValue( pontuarMilhares(regulagem->getGramSmt()) );
+    outHa->SetValue( pontuarMilhares(static_cast<float>(inHa->GetValue()) * calcularQuilosHectare(regulagem)[0]) + " kg de semente e " +
+        pontuarMilhares(static_cast<float>(inHa->GetValue()) * calcularQuilosHectare(regulagem)[1]) + " kg de adubo." );
 }
 
 /*
