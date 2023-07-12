@@ -180,7 +180,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTituloResultadoSmt = new wxStaticText(panelOutSmt, wxID_ANY, "Gramas por tiro: (Semente)");
     boxOutSmt->Add(labelTituloResultadoSmt, wxSizerFlags().Border(wxALL));
 
-    outSmt = new wxTextCtrl(panelOutSmt, wxID_ANY, std::format( "{:.2f}", static_cast<float>(calcularQuilosHectare(regulagem)[0])), wxDefaultPosition, wxDefaultSize, 0);
+    outSmt = new wxTextCtrl(panelOutSmt, wxID_ANY, std::format( "{:.2f}", static_cast<float>(calcularQuilosHectare(regulagem)[0])), wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     boxOutSmt->Add(outSmt, wxSizerFlags().Right().Border(wxALL));
 
     panelOutSmt->SetSizerAndFit(boxOutSmt);
@@ -224,7 +224,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTituloResultadoAdb = new wxStaticText(panelOutAdb, wxID_ANY, "Gramas por tiro: (Adubo)");
     boxOutAdb->Add(labelTituloResultadoAdb, wxSizerFlags().Border(wxALL));
 
-    outAdb = new wxTextCtrl(panelOutAdb, wxID_ANY, std::format( "{:.2f}", static_cast<float>(calcularQuilosHectare(regulagem)[1])) , wxDefaultPosition, wxDefaultSize, 0);
+    outAdb = new wxTextCtrl(panelOutAdb, wxID_ANY, std::format( "{:.2f}", static_cast<float>(calcularQuilosHectare(regulagem)[1])) , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     boxOutAdb->Add(outAdb, wxSizerFlags().Right().Border(wxALL));
     panelOutAdb->SetSizerAndFit(boxOutAdb);
     panelAdb->SetSizerAndFit(boxAdb);
@@ -261,7 +261,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelPrevisao = new wxStaticText(panelOutHa, wxID_ANY, wxString::FromUTF8("\x50\x72\x65\x76\x69\x73\xc3\xa3\x6f\x3a"));
     boxOutHa->Add(labelPrevisao, wxSizerFlags().Center().Border(wxALL));
 
-    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, std::format("{:.2f} kg de semente e {:.2f} kg de adubo.", 0.0, 0.0), wxDefaultPosition, wxSize(300, -1), 0);
+    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, std::format("{:.2f} kg de semente e {:.2f} kg de adubo.", 0.0, 0.0), wxDefaultPosition, wxSize(300, -1), wxTE_READONLY);
     boxOutHa->Add(outHa, wxSizerFlags().Border(wxALL));
     panelOutHa->SetSizerAndFit(boxOutHa);
     panelHa->SetSizerAndFit(boxHa);
