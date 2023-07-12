@@ -1,8 +1,9 @@
 #include <wx/wx.h>
 #include <wx/wxprec.h>
-//#include <fmt/format.h>
-#include "regulagem.hpp"
+#include <format>
+
 #include "framemain_base.hpp"
+#include "regulagem.hpp"
 
 class calculadoraRegulagem : public wxApp
 {
@@ -22,7 +23,7 @@ bool calculadoraRegulagem::OnInit()
 
 void frameMain::OnCalcularClick(wxCommandEvent& event)
 {
-    /// TO-DO: Usar apenas a variavel definida no frameMain
+    // TO-DO: Usar apenas uma variavel regulagem (issue #12)
     auto* regulagem = new Regulagem();
     // Configurando regulagem conforme input do usuario
     regulagem->setCult("teste");
@@ -33,18 +34,12 @@ void frameMain::OnCalcularClick(wxCommandEvent& event)
     regulagem->setGramA(calcularGramasTiro( static_cast<float>(inKgAdb->GetValue()), regulagem) );
     regulagem->setGramS(calcularGramasTiro( static_cast<float>(inKgSmt->GetValue()), regulagem) );
 
-    // Calcular gasto previsto
-    float hectares{ static_cast<float>(inHa->GetValue()) };
-    std::array<float, 2> kgha { calcularQuilosHectare(regulagem) };
-    std::array<float, 2> kgtotal;
-    kgtotal[0] = hectares * kgha[0];
-    kgtotal[1] = hectares * kgha[1];
-    std::string previsao { std::to_string(kgtotal[0]) + " kg de semente e " + std::to_string(kgtotal[1]) + " kg de adubo." };
-
     // mostrando resultado
-    outAdb->SetValue( std::to_string(regulagem->getGramAdb()) );
-    outSmt->SetValue( std::to_string(regulagem->getGramSmt()) );
-    outHa->SetValue(previsao);
+    outAdb->SetValue( std::format("{:.2f}", regulagem->getGramAdb()) );
+    outSmt->SetValue( std::format("{:.2f}", regulagem->getGramSmt()) );
+    outHa->SetValue( std::format("{:.2f} kg de semente e {:.2f} kg de adubo.",
+        static_cast<float>(inHa->GetValue()) * calcularQuilosHectare(regulagem)[0],
+        static_cast<float>(inHa->GetValue()) * calcularQuilosHectare(regulagem)[1] ) );
 }
 
 /*
@@ -185,7 +180,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTituloResultadoSmt = new wxStaticText(panelOutSmt, wxID_ANY, "Gramas por tiro: (Semente)");
     boxOutSmt->Add(labelTituloResultadoSmt, wxSizerFlags().Border(wxALL));
 
-    outSmt = new wxTextCtrl(panelOutSmt, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+    outSmt = new wxTextCtrl(panelOutSmt, wxID_ANY, std::format( "{:.2f}", static_cast<float>(calcularQuilosHectare(regulagem)[0])), wxDefaultPosition, wxDefaultSize, 0);
     boxOutSmt->Add(outSmt, wxSizerFlags().Right().Border(wxALL));
 
     panelOutSmt->SetSizerAndFit(boxOutSmt);
@@ -229,7 +224,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTituloResultadoAdb = new wxStaticText(panelOutAdb, wxID_ANY, "Gramas por tiro: (Adubo)");
     boxOutAdb->Add(labelTituloResultadoAdb, wxSizerFlags().Border(wxALL));
 
-    outAdb = new wxTextCtrl(panelOutAdb, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+    outAdb = new wxTextCtrl(panelOutAdb, wxID_ANY, std::format( "{:.2f}", static_cast<float>(calcularQuilosHectare(regulagem)[1])) , wxDefaultPosition, wxDefaultSize, 0);
     boxOutAdb->Add(outAdb, wxSizerFlags().Right().Border(wxALL));
     panelOutAdb->SetSizerAndFit(boxOutAdb);
     panelAdb->SetSizerAndFit(boxAdb);
@@ -266,7 +261,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelPrevisao = new wxStaticText(panelOutHa, wxID_ANY, wxString::FromUTF8("\x50\x72\x65\x76\x69\x73\xc3\xa3\x6f\x3a"));
     boxOutHa->Add(labelPrevisao, wxSizerFlags().Center().Border(wxALL));
 
-    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, "0 kg sementes e 0 kg adubo", wxDefaultPosition, wxSize(300, -1), 0);
+    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, std::format("{:.2f} kg de semente e {:.2f} kg de adubo.", 0.0, 0.0), wxDefaultPosition, wxSize(300, -1), 0);
     boxOutHa->Add(outHa, wxSizerFlags().Border(wxALL));
     panelOutHa->SetSizerAndFit(boxOutHa);
     panelHa->SetSizerAndFit(boxHa);
