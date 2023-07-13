@@ -44,7 +44,7 @@ bool calculadoraRegulagem::OnInit()
     return true;
 }
 
-void frameMain::OnCalcularClick(wxCommandEvent& event)
+void frameMain::fazerCalculoRegulagem(wxCommandEvent& event)
 {
     // TO-DO: Usar apenas uma variavel regulagem (issue #12)
     auto* regulagem = new Regulagem();
@@ -144,7 +144,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelEspc = new wxStaticText(panelEspc, wxID_ANY, wxString::FromUTF8("\x45\x73\x70\x61\xc3\xa7\x61\x6d\x65\x6e\x74\x6f\x20\x64\x61\x73\x20\x6c\x69\x6e\x68\x61\x73\x20\x28\x63\x6d\x29\x3a"));
     boxEspc->Add(labelEspc, wxSizerFlags().Center().Border(wxALL));
 
-    inEspc = new wxSpinCtrlDouble(panelEspc, wxID_ANY, "0.0" , wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
+    inEspc = new wxSpinCtrlDouble(panelEspc, wxID_ANY, "0.0" , wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER, 1.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxEspc->Add(inEspc, wxSizerFlags().Center().Border(wxALL));
     panelEspc->SetSizerAndFit(boxEspc);
 
@@ -158,7 +158,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTiro = new wxStaticText(panelTiro, wxID_ANY, "Tiro (m):");
     boxTiro->Add(labelTiro, wxSizerFlags().Center().Border(wxALL));
 
-    inTiro = new wxSpinCtrlDouble(panelTiro, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
+    inTiro = new wxSpinCtrlDouble(panelTiro, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER, 1.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxTiro->Add(inTiro, wxSizerFlags().Center().Border(wxALL));
     panelTiro->SetSizerAndFit(boxTiro);
     panelGeral->SetSizerAndFit(boxGeral);
@@ -185,7 +185,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelKghaSmt = new wxStaticText(panelInSmt, wxID_ANY, "Kg / Ha");
     boxInKgSmt->Add(labelKghaSmt, wxSizerFlags().Border(wxALL));
 
-    inKgSmt = new wxSpinCtrlDouble(panelInSmt, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
+    inKgSmt = new wxSpinCtrlDouble(panelInSmt, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER, 0.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxInKgSmt->Add(inKgSmt, wxSizerFlags().Border(wxALL));
 
     boxInSmt->Add(boxInKgSmt, wxSizerFlags().Border(wxALL));
@@ -229,7 +229,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelKghaAdb = new wxStaticText(panelInAdb, wxID_ANY, "Kg / Ha");
     boxInKgAdb->Add(labelKghaAdb, wxSizerFlags().Border(wxALL));
 
-    inKgAdb = new wxSpinCtrlDouble(panelInAdb, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
+    inKgAdb = new wxSpinCtrlDouble(panelInAdb, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER, 0.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxInKgAdb->Add(inKgAdb, wxSizerFlags().Border(wxALL));
 
     boxInAdb->Add(boxInKgAdb, wxSizerFlags().Border(wxALL));
@@ -267,7 +267,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelHectares = new wxStaticText(panelInHa, wxID_ANY, "Hectares:");
     boxInHa->Add(labelHectares, wxSizerFlags().Center().Border(wxALL));
 
-    inHa = new wxSpinCtrlDouble(panelInHa, wxID_ANY, "0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, 0.0, 1.0, L"wxSpinCtrlDouble");
+    inHa = new wxSpinCtrlDouble(panelInHa, wxID_ANY, "0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER, 0.0, 1000.0, 0.0, 1.0, L"wxSpinCtrlDouble");
     boxInHa->Add(inHa, wxSizerFlags().Border(wxALL));
     panelInHa->SetSizerAndFit(boxInHa);
 
@@ -304,9 +304,15 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     /*
      * Conectar Eventos:
      *   Botao calcular
+     *   Enter nos campos:
+     *     espacamento, tiro, kg/ha semente, kg/ha adubo e hectares
      */
-
-    btnCalcular->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frameMain::OnCalcularClick), NULL, this);
+    btnCalcular->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inEspc->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inTiro->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inKgSmt->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inKgAdb->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inHa->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
 }
 
 frameMain::~frameMain()
@@ -314,9 +320,13 @@ frameMain::~frameMain()
     /*
      * Desconectar Eventos:
      *   Botao calcular
+     *   Enter nos campos:
+     *     espacamento, tiro, kg/ha semente, kg/ha adubo e hectares
      */
-    delete regulagem;
-    btnCalcular->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frameMain::OnCalcularClick), NULL, this);
-
+    btnCalcular->Unbind(wxEVT_COMMAND_BUTTON_CLICKED,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inEspc->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inTiro->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inKgSmt->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inKgAdb->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    inHa->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
 }
-

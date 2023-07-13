@@ -24,7 +24,7 @@ class frameMain : public wxFrame
 {
 private:
 
-    void OnCalcularClick(wxCommandEvent& event);
+    void fazerCalculoRegulagem(wxCommandEvent& event);
 
 public:
 
