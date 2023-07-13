@@ -26,7 +26,7 @@ private:
 
     void OnCalcularClick(wxCommandEvent& event);
 
-protected:
+public:
 
     Regulagem* regulagem;
     wxButton* btnCalcular;
@@ -50,8 +50,6 @@ protected:
     wxTextCtrl* outHa;
     wxStaticText* tituloAdb;
     wxStaticText* tituloSmt;
-
-public:
 
     frameMain(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title =
         "Calcular Regulagem da Plantadeira", const wxPoint& pos = wxDefaultPosition, const wxSize& size =
