@@ -1,10 +1,10 @@
 #include <wx/wx.h>
 #include <wx/wxprec.h>
-#include <format>
+#include <fmt/format.h>
+#include <locale>
 
 #include "framemain_base.hpp"
 #include "regulagem.hpp"
-#include "tools.hpp"
 
 class calculadoraRegulagem : public wxApp
 {
@@ -19,6 +19,28 @@ bool calculadoraRegulagem::OnInit()
     frameMain* frame = new frameMain(NULL, wxID_ANY, "Calcular Regulagem da Plantadeira", wxDefaultPosition,
         wxSize(470, 430), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL, wxFrameNameStr);
     frame->Show(true);
+
+    // TO-DO: Usar apenas uma variavel regulagem (issue #12)
+    auto* regulagem = new Regulagem();
+
+    // Valores iniciais
+    regulagem->setCult("teste");
+    regulagem->setFormAdb("00-00-00");
+    regulagem->setVariSmt("original");
+    regulagem->setGramA(calcularGramasTiro(static_cast<float>(frame->inKgAdb->GetValue()), regulagem));
+    regulagem->setGramS(calcularGramasTiro(static_cast<float>(frame->inKgSmt->GetValue()), regulagem));
+
+    // mostrando valores iniciais
+    frame->inEspc->  SetValue( fmt::format("{0:.2g}", regulagem->getEspc()) );
+    frame->inTiro->  SetValue( fmt::format("{0:.2g}", regulagem->getTiro()) );
+    frame->inKgAdb-> SetValue( fmt::format("{0:.2g}", calcularQuilosHectare(regulagem)[1]) );
+    frame->inKgSmt-> SetValue( fmt::format("{0:.2g}", calcularQuilosHectare(regulagem)[0]) );
+    frame->outAdb->  SetValue( fmt::format("{0:.2f}", regulagem->getGramAdb()) );
+    frame->outSmt->  SetValue( fmt::format("{0:.2f}", regulagem->getGramSmt()) );
+    frame->inHa->    SetValue( fmt::format("{0:.2g}", 0.0) );
+    frame->outHa->   SetValue( fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
+        fmt::group_digits(frame->inHa->GetValue() * calcularQuilosHectare(regulagem)[0]),
+        fmt::group_digits(frame->inHa->GetValue() * calcularQuilosHectare(regulagem)[1])) );
     return true;
 }
 
@@ -36,10 +58,11 @@ void frameMain::OnCalcularClick(wxCommandEvent& event)
     regulagem->setGramS(calcularGramasTiro( static_cast<float>(inKgSmt->GetValue()), regulagem) );
 
     // mostrando resultado
-    outAdb->SetValue( pontuarMilhares(regulagem->getGramAdb()) );
-    outSmt->SetValue( pontuarMilhares(regulagem->getGramSmt()) );
-    outHa->SetValue( pontuarMilhares(static_cast<float>(inHa->GetValue()) * calcularQuilosHectare(regulagem)[0]) + " kg de semente e " +
-        pontuarMilhares(static_cast<float>(inHa->GetValue()) * calcularQuilosHectare(regulagem)[1]) + " kg de adubo." );
+    outAdb->SetValue( fmt::format("{0:.2f}", regulagem->getGramAdb()) );
+    outSmt->SetValue( fmt::format("{0:.2f}", regulagem->getGramSmt()) );
+    outHa->SetValue ( fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
+        fmt::group_digits(inHa->GetValue() * calcularQuilosHectare(regulagem)[0]),
+        fmt::group_digits(inHa->GetValue() * calcularQuilosHectare(regulagem)[1])) );
 }
 
 /*
@@ -71,8 +94,6 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name) : wxFrame()
 {
     if (!Create(parent, id, title, pos, size, style, name)) { return; }
-    
-    auto* regulagem = new Regulagem();
 
     // Definicoes painel principal
 
@@ -123,7 +144,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelEspc = new wxStaticText(panelEspc, wxID_ANY, wxString::FromUTF8("\x45\x73\x70\x61\xc3\xa7\x61\x6d\x65\x6e\x74\x6f\x20\x64\x61\x73\x20\x6c\x69\x6e\x68\x61\x73\x20\x28\x63\x6d\x29\x3a"));
     boxEspc->Add(labelEspc, wxSizerFlags().Center().Border(wxALL));
 
-    inEspc = new wxSpinCtrlDouble(panelEspc, wxID_ANY, std::to_string(regulagem->getEspc()), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, regulagem->getEspc(), 1.0, L"wxSpinCtrlDouble");
+    inEspc = new wxSpinCtrlDouble(panelEspc, wxID_ANY, "0.0" , wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxEspc->Add(inEspc, wxSizerFlags().Center().Border(wxALL));
     panelEspc->SetSizerAndFit(boxEspc);
 
@@ -137,7 +158,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTiro = new wxStaticText(panelTiro, wxID_ANY, "Tiro (m):");
     boxTiro->Add(labelTiro, wxSizerFlags().Center().Border(wxALL));
 
-    inTiro = new wxSpinCtrlDouble(panelTiro, wxID_ANY, std::to_string(regulagem->getTiro()), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, regulagem->getTiro(), 1.0, L"wxSpinCtrlDouble");
+    inTiro = new wxSpinCtrlDouble(panelTiro, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxTiro->Add(inTiro, wxSizerFlags().Center().Border(wxALL));
     panelTiro->SetSizerAndFit(boxTiro);
     panelGeral->SetSizerAndFit(boxGeral);
@@ -164,7 +185,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelKghaSmt = new wxStaticText(panelInSmt, wxID_ANY, "Kg / Ha");
     boxInKgSmt->Add(labelKghaSmt, wxSizerFlags().Border(wxALL));
 
-    inKgSmt = new wxSpinCtrlDouble(panelInSmt, wxID_ANY, std::to_string(regulagem->getGramSmt()), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, regulagem->getGramSmt(), 1.0, L"wxSpinCtrlDouble");
+    inKgSmt = new wxSpinCtrlDouble(panelInSmt, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxInKgSmt->Add(inKgSmt, wxSizerFlags().Border(wxALL));
 
     boxInSmt->Add(boxInKgSmt, wxSizerFlags().Border(wxALL));
@@ -180,7 +201,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTituloResultadoSmt = new wxStaticText(panelOutSmt, wxID_ANY, "Gramas por tiro: (Semente)");
     boxOutSmt->Add(labelTituloResultadoSmt, wxSizerFlags().Border(wxALL));
 
-    outSmt = new wxTextCtrl(panelOutSmt, wxID_ANY, std::format( "{:.2f}", static_cast<float>(calcularQuilosHectare(regulagem)[0])), wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+    outSmt = new wxTextCtrl(panelOutSmt, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     boxOutSmt->Add(outSmt, wxSizerFlags().Right().Border(wxALL));
 
     panelOutSmt->SetSizerAndFit(boxOutSmt);
@@ -208,7 +229,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelKghaAdb = new wxStaticText(panelInAdb, wxID_ANY, "Kg / Ha");
     boxInKgAdb->Add(labelKghaAdb, wxSizerFlags().Border(wxALL));
 
-    inKgAdb = new wxSpinCtrlDouble(panelInAdb, wxID_ANY, std::to_string(regulagem->getGramAdb()), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, regulagem->getGramAdb(), 1.0, L"wxSpinCtrlDouble");
+    inKgAdb = new wxSpinCtrlDouble(panelInAdb, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxInKgAdb->Add(inKgAdb, wxSizerFlags().Border(wxALL));
 
     boxInAdb->Add(boxInKgAdb, wxSizerFlags().Border(wxALL));
@@ -224,7 +245,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTituloResultadoAdb = new wxStaticText(panelOutAdb, wxID_ANY, "Gramas por tiro: (Adubo)");
     boxOutAdb->Add(labelTituloResultadoAdb, wxSizerFlags().Border(wxALL));
 
-    outAdb = new wxTextCtrl(panelOutAdb, wxID_ANY, std::format( "{:.2f}", static_cast<float>(calcularQuilosHectare(regulagem)[1])) , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+    outAdb = new wxTextCtrl(panelOutAdb, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     boxOutAdb->Add(outAdb, wxSizerFlags().Right().Border(wxALL));
     panelOutAdb->SetSizerAndFit(boxOutAdb);
     panelAdb->SetSizerAndFit(boxAdb);
@@ -261,7 +282,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelPrevisao = new wxStaticText(panelOutHa, wxID_ANY, wxString::FromUTF8("\x50\x72\x65\x76\x69\x73\xc3\xa3\x6f\x3a"));
     boxOutHa->Add(labelPrevisao, wxSizerFlags().Center().Border(wxALL));
 
-    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, std::format("{:.2f} kg de semente e {:.2f} kg de adubo.", 0.0, 0.0), wxDefaultPosition, wxSize(300, -1), wxTE_READONLY);
+    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, ( fmt::format("{0} kg de semente e {1} kg de adubo", 0, 0) ), wxDefaultPosition, wxSize(300, -1), wxTE_READONLY);
     boxOutHa->Add(outHa, wxSizerFlags().Border(wxALL));
     panelOutHa->SetSizerAndFit(boxOutHa);
     panelHa->SetSizerAndFit(boxHa);
