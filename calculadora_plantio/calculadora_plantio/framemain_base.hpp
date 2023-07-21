@@ -25,11 +25,17 @@ class frameMain : public wxFrame
 private:
 
     void fazerCalculoRegulagem(wxCommandEvent& event);
+    void copiarSementeClipboard(wxCommandEvent& event);
+    void copiarAduboClipboard(wxCommandEvent& event);
+    void copiarPrevisaoClipboard(wxCommandEvent& event);
 
 public:
 
     Regulagem* regulagem;
     wxButton* btnCalcular;
+    wxButton* btnCpPrev;
+    wxButton* btnCpSmt;
+    wxButton* btnCpAdb;
     wxChoice* boxCult;
     wxSpinCtrlDouble* inEspc;
     wxSpinCtrlDouble* inHa;

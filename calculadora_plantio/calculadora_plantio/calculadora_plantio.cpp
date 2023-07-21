@@ -1,5 +1,6 @@
 #include <wx/wx.h>
 #include <wx/wxprec.h>
+#include <wx/clipbrd.h>
 #include <fmt/format.h>
 #include <locale>
 
@@ -17,7 +18,7 @@ wxIMPLEMENT_APP(calculadoraRegulagem);
 bool calculadoraRegulagem::OnInit()
 {
     frameMain* frame = new frameMain(NULL, wxID_ANY, "Calcular Regulagem da Plantadeira", wxDefaultPosition,
-        wxSize(470, 430), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL, wxFrameNameStr);
+        wxSize(470, 500), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL, wxFrameNameStr);
     frame->Show(true);
 
     // TO-DO: Usar apenas uma variavel regulagem (issue #12)
@@ -63,6 +64,33 @@ void frameMain::fazerCalculoRegulagem(wxCommandEvent& event)
     outHa->SetValue ( fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
         fmt::group_digits(inHa->GetValue() * calcularQuilosHectare(regulagem)[0]),
         fmt::group_digits(inHa->GetValue() * calcularQuilosHectare(regulagem)[1])) );
+}
+
+void frameMain::copiarAduboClipboard(wxCommandEvent& event)
+{
+    if (wxTheClipboard->Open())
+    {
+        wxTheClipboard->SetData(new wxTextDataObject(outAdb->GetValue()));
+        wxTheClipboard->Close();
+    }
+}
+
+void frameMain::copiarSementeClipboard(wxCommandEvent& event)
+{
+    if (wxTheClipboard->Open())
+    {
+        wxTheClipboard->SetData(new wxTextDataObject(outSmt->GetValue()));
+        wxTheClipboard->Close();
+    }
+}
+
+void frameMain::copiarPrevisaoClipboard(wxCommandEvent& event)
+{
+    if (wxTheClipboard->Open())
+    {
+        wxTheClipboard->SetData(new wxTextDataObject(outHa->GetValue()));
+        wxTheClipboard->Close();
+    }
 }
 
 /*
@@ -144,7 +172,7 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelEspc = new wxStaticText(panelEspc, wxID_ANY, wxString::FromUTF8("\x45\x73\x70\x61\xc3\xa7\x61\x6d\x65\x6e\x74\x6f\x20\x64\x61\x73\x20\x6c\x69\x6e\x68\x61\x73\x20\x28\x63\x6d\x29\x3a"));
     boxEspc->Add(labelEspc, wxSizerFlags().Center().Border(wxALL));
 
-    inEspc = new wxSpinCtrlDouble(panelEspc, wxID_ANY, "0.0" , wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER, 1.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
+    inEspc = new wxSpinCtrlDouble(panelEspc, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxTE_PROCESS_ENTER, 1.0, 1000.0, 0, 1.0, L"wxSpinCtrlDouble");
     boxEspc->Add(inEspc, wxSizerFlags().Center().Border(wxALL));
     panelEspc->SetSizerAndFit(boxEspc);
 
@@ -204,6 +232,9 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     outSmt = new wxTextCtrl(panelOutSmt, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     boxOutSmt->Add(outSmt, wxSizerFlags().Right().Border(wxALL));
 
+    btnCpSmt = new wxButton(panelOutSmt, wxID_ANY, "Copiar");
+    boxOutSmt->Add(btnCpSmt, wxSizerFlags().Right().Border(wxALL));
+
     panelOutSmt->SetSizerAndFit(boxOutSmt);
     panelSmt->SetSizerAndFit(boxSmt);
 
@@ -247,6 +278,10 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
 
     outAdb = new wxTextCtrl(panelOutAdb, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     boxOutAdb->Add(outAdb, wxSizerFlags().Right().Border(wxALL));
+
+    btnCpAdb = new wxButton(panelOutAdb, wxID_ANY, "Copiar");
+    boxOutAdb->Add(btnCpAdb, wxSizerFlags().Right().Border(wxALL));
+
     panelOutAdb->SetSizerAndFit(boxOutAdb);
     panelAdb->SetSizerAndFit(boxAdb);
 
@@ -282,8 +317,12 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelPrevisao = new wxStaticText(panelOutHa, wxID_ANY, wxString::FromUTF8("\x50\x72\x65\x76\x69\x73\xc3\xa3\x6f\x3a"));
     boxOutHa->Add(labelPrevisao, wxSizerFlags().Center().Border(wxALL));
 
-    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, ( fmt::format("{0} kg de semente e {1} kg de adubo", 0, 0) ), wxDefaultPosition, wxSize(300, -1), wxTE_READONLY);
+    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, (fmt::format("{0} kg de semente e {1} kg de adubo", 0, 0)), wxDefaultPosition, wxSize(300, -1), wxTE_READONLY);
     boxOutHa->Add(outHa, wxSizerFlags().Border(wxALL));
+
+    btnCpPrev = new wxButton(panelOutHa, wxID_ANY, "Copiar");
+
+    boxOutHa->Add(btnCpPrev, wxSizerFlags().Border(wxALL));
     panelOutHa->SetSizerAndFit(boxOutHa);
     panelHa->SetSizerAndFit(boxHa);
 
@@ -306,13 +345,18 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
      *   Botao calcular
      *   Enter nos campos:
      *     espacamento, tiro, kg/ha semente, kg/ha adubo e hectares
+     *   Copiar valores para area de transferencia:
+     *     Gramas por tiro de semente e adubo, e previsao de gasto
      */
-    btnCalcular->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inEspc->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inTiro->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inKgSmt->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inKgAdb->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inHa->Bind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    Bind(wxEVT_BUTTON, &frameMain::fazerCalculoRegulagem, this, btnCalcular->GetId(), -1, 0);
+    Bind(wxEVT_TEXT_ENTER, &frameMain::fazerCalculoRegulagem, this, inEspc->GetId(), -1, 0);
+    Bind(wxEVT_TEXT_ENTER, &frameMain::fazerCalculoRegulagem, this, inTiro->GetId(), -1, 0);
+    Bind(wxEVT_TEXT_ENTER, &frameMain::fazerCalculoRegulagem, this, inKgSmt->GetId(), -1, 0);
+    Bind(wxEVT_TEXT_ENTER, &frameMain::fazerCalculoRegulagem, this, inKgAdb->GetId(), -1, 0);
+    Bind(wxEVT_TEXT_ENTER, &frameMain::fazerCalculoRegulagem, this, inHa->GetId(), -1, 0);
+    Bind(wxEVT_BUTTON, &frameMain::copiarAduboClipboard, this, btnCpAdb->GetId(), -1, 0);
+    Bind(wxEVT_BUTTON, &frameMain::copiarSementeClipboard, this, btnCpSmt->GetId(), -1, 0);
+    Bind(wxEVT_BUTTON, &frameMain::copiarPrevisaoClipboard, this, btnCpPrev->GetId(), -1, 0);
 }
 
 frameMain::~frameMain()
@@ -322,11 +366,16 @@ frameMain::~frameMain()
      *   Botao calcular
      *   Enter nos campos:
      *     espacamento, tiro, kg/ha semente, kg/ha adubo e hectares
+     *   Copiar valores para area de transferencia:
+     *     Gramas por tiro de semente e adubo, e previsao de gasto
      */
-    btnCalcular->Unbind(wxEVT_COMMAND_BUTTON_CLICKED,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inEspc->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inTiro->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inKgSmt->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inKgAdb->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
-    inHa->Unbind(wxEVT_COMMAND_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    Unbind(wxEVT_BUTTON,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    Unbind(wxEVT_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    Unbind(wxEVT_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    Unbind(wxEVT_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    Unbind(wxEVT_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    Unbind(wxEVT_TEXT_ENTER,&frameMain::fazerCalculoRegulagem, this, -1, -1, 0);
+    Unbind(wxEVT_BUTTON, &frameMain::copiarAduboClipboard, this, -1, -1, 0);
+    Unbind(wxEVT_BUTTON, &frameMain::copiarSementeClipboard, this, -1, -1, 0);
+    Unbind(wxEVT_BUTTON, &frameMain::copiarPrevisaoClipboard, this, -1, -1, 0);
 }
