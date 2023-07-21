@@ -1,6 +1,7 @@
 #include <wx/wx.h>
 #include <wx/wxprec.h>
 #include <wx/clipbrd.h>
+#include <wx/bmpbuttn.h>
 #include <fmt/format.h>
 #include <locale>
 
@@ -18,7 +19,7 @@ wxIMPLEMENT_APP(calculadoraRegulagem);
 bool calculadoraRegulagem::OnInit()
 {
     frameMain* frame = new frameMain(NULL, wxID_ANY, "Calcular Regulagem da Plantadeira", wxDefaultPosition,
-        wxSize(470, 500), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL, wxFrameNameStr);
+        wxSize(470, 450), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL, wxFrameNameStr);
     frame->Show(true);
 
     // TO-DO: Usar apenas uma variavel regulagem (issue #12)
@@ -39,7 +40,7 @@ bool calculadoraRegulagem::OnInit()
     frame->outAdb->  SetValue( fmt::format("{0:.2f}", regulagem->getGramAdb()) );
     frame->outSmt->  SetValue( fmt::format("{0:.2f}", regulagem->getGramSmt()) );
     frame->inHa->    SetValue( fmt::format("{0:.2g}", 0.0) );
-    frame->outHa->   SetValue( fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
+    frame->outPrv->   SetValue( fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
         fmt::group_digits(frame->inHa->GetValue() * calcularQuilosHectare(regulagem)[0]),
         fmt::group_digits(frame->inHa->GetValue() * calcularQuilosHectare(regulagem)[1])) );
     return true;
@@ -61,7 +62,7 @@ void frameMain::fazerCalculoRegulagem(wxCommandEvent& event)
     // mostrando resultado
     outAdb->SetValue( fmt::format("{0:.2f}", regulagem->getGramAdb()) );
     outSmt->SetValue( fmt::format("{0:.2f}", regulagem->getGramSmt()) );
-    outHa->SetValue ( fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
+    outPrv->SetValue ( fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
         fmt::group_digits(inHa->GetValue() * calcularQuilosHectare(regulagem)[0]),
         fmt::group_digits(inHa->GetValue() * calcularQuilosHectare(regulagem)[1])) );
 }
@@ -88,7 +89,7 @@ void frameMain::copiarPrevisaoClipboard(wxCommandEvent& event)
 {
     if (wxTheClipboard->Open())
     {
-        wxTheClipboard->SetData(new wxTextDataObject(outHa->GetValue()));
+        wxTheClipboard->SetData(new wxTextDataObject(outPrv->GetValue()));
         wxTheClipboard->Close();
     }
 }
@@ -108,13 +109,16 @@ void frameMain::copiarPrevisaoClipboard(wxCommandEvent& event)
  *			   + wxPanel panelInSmt, wxBoxSizer boxInSmt (Vertical)
  *                 + wxBoxSizer boxInKgSmt (Horizontal)
  *			   + wxPanel panelOutSmt, wxBoxSizer boxOutSmt (Vertical)
+ *			       + wxBoxSizer boxOutSmt2 (Horizontal)
  *         + wxPanel panelAdb, wxBoxSizer boxAdb (Horizontal)
  *             + wxPanel panelInAdb, wxBoxSizer boxInAdb (Vertical)
  *                 + wxBoxSizer boxInKgAdb (Horizontal)
  *             + wxPanel panelOutAdb, wxBoxSizer boxOutAdb (Vertical)
- *         + wxPanel panelHa, wxBoxSizer boxHa (Horizontal)
+ *			       + wxBoxSizer boxOutAdb2 (Horizontal)
+ *         + wxPanel panelPrv, wxBoxSizer boxHa (Horizontal)
  *             + wxPanel panelInHa, wxBoxSizer boxInHa (Vertical)
- *             + wxPanel panelOutHa, wxBoxSizer boxOutHa (Vertical)
+ *             + wxPanel panelOutPrv, wxBoxSizer boxOutHa (Vertical)
+ *			       + wxBoxSizer boxOutPrv2 (Horizontal)
  *         + wxPanel panelBtnCalc, wxBoxSizer boxBtnCalc (Vertical)
  */
 
@@ -229,11 +233,13 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTituloResultadoSmt = new wxStaticText(panelOutSmt, wxID_ANY, "Gramas por tiro: (Semente)");
     boxOutSmt->Add(labelTituloResultadoSmt, wxSizerFlags().Border(wxALL));
 
+    auto* boxOutSmt2 = new wxBoxSizer(wxHORIZONTAL);
     outSmt = new wxTextCtrl(panelOutSmt, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-    boxOutSmt->Add(outSmt, wxSizerFlags().Right().Border(wxALL));
-
+    boxOutSmt2->Add(outSmt, wxSizerFlags().Right().Border(wxALL));
     btnCpSmt = new wxButton(panelOutSmt, wxID_ANY, "Copiar");
-    boxOutSmt->Add(btnCpSmt, wxSizerFlags().Right().Border(wxALL));
+    boxOutSmt2->Add(btnCpSmt, wxSizerFlags().Right().Border(wxALL));
+
+    boxOutSmt->Add(boxOutSmt2, wxSizerFlags().Right().Border(wxALL));
 
     panelOutSmt->SetSizerAndFit(boxOutSmt);
     panelSmt->SetSizerAndFit(boxSmt);
@@ -276,25 +282,27 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
     labelTituloResultadoAdb = new wxStaticText(panelOutAdb, wxID_ANY, "Gramas por tiro: (Adubo)");
     boxOutAdb->Add(labelTituloResultadoAdb, wxSizerFlags().Border(wxALL));
 
+    auto* boxOutAdb2 = new wxBoxSizer(wxHORIZONTAL);
     outAdb = new wxTextCtrl(panelOutAdb, wxID_ANY, "0.0", wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-    boxOutAdb->Add(outAdb, wxSizerFlags().Right().Border(wxALL));
-
+    boxOutAdb2->Add(outAdb, wxSizerFlags().Right().Border(wxALL));
     btnCpAdb = new wxButton(panelOutAdb, wxID_ANY, "Copiar");
-    boxOutAdb->Add(btnCpAdb, wxSizerFlags().Right().Border(wxALL));
+    boxOutAdb2->Add(btnCpAdb, wxSizerFlags().Right().Border(wxALL));
+
+    boxOutAdb->Add(boxOutAdb2, wxSizerFlags().Right().Border(wxALL));
 
     panelOutAdb->SetSizerAndFit(boxOutAdb);
     panelAdb->SetSizerAndFit(boxAdb);
 
     // Painel Hectares e previsao de gasto total
 
-    auto* panelHa = new wxPanel(panelMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    boxMain->Add(panelHa, wxSizerFlags().Center().Border(wxALL));
+    auto* panelPrv = new wxPanel(panelMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    boxMain->Add(panelPrv, wxSizerFlags().Center().Border(wxALL));
 
     auto* boxHa = new wxBoxSizer(wxHORIZONTAL);
 
     // input hectares
 
-    auto* panelInHa = new wxPanel(panelHa, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxSUNKEN_BORDER);
+    auto* panelInHa = new wxPanel(panelPrv, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxSUNKEN_BORDER);
     boxHa->Add(panelInHa, wxSizerFlags().Border(wxALL));
 
     auto* boxInHa = new wxBoxSizer(wxVERTICAL);
@@ -308,23 +316,25 @@ frameMain::frameMain(wxWindow* parent, wxWindowID id, const wxString& title,
 
     // output previsao
 
-    auto* panelOutHa = new wxPanel(panelHa, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    boxHa->Add(panelOutHa, wxSizerFlags().Border(wxALL));
+    auto* panelOutPrv = new wxPanel(panelPrv, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    boxHa->Add(panelOutPrv, wxSizerFlags().Border(wxALL));
 
-    auto* boxOutHa = new wxBoxSizer(wxVERTICAL);
+    auto* boxOutPrv = new wxBoxSizer(wxVERTICAL);
 
     /// Palavra "Previsao:" codificada em utf8 por causa do acento
-    labelPrevisao = new wxStaticText(panelOutHa, wxID_ANY, wxString::FromUTF8("\x50\x72\x65\x76\x69\x73\xc3\xa3\x6f\x3a"));
-    boxOutHa->Add(labelPrevisao, wxSizerFlags().Center().Border(wxALL));
+    labelPrevisao = new wxStaticText(panelOutPrv, wxID_ANY, wxString::FromUTF8("\x50\x72\x65\x76\x69\x73\xc3\xa3\x6f\x3a"));
+    boxOutPrv->Add(labelPrevisao, wxSizerFlags().Center().Border(wxALL));
 
-    outHa = new wxTextCtrl(panelOutHa, wxID_ANY, (fmt::format("{0} kg de semente e {1} kg de adubo", 0, 0)), wxDefaultPosition, wxSize(300, -1), wxTE_READONLY);
-    boxOutHa->Add(outHa, wxSizerFlags().Border(wxALL));
+    auto* boxOutPrv2 = new wxBoxSizer(wxHORIZONTAL);
+    outPrv = new wxTextCtrl(panelOutPrv, wxID_ANY, (fmt::format("{0} kg de semente e {1} kg de adubo", 0, 0)), wxDefaultPosition, wxSize(230, -1), wxTE_READONLY);
+    boxOutPrv2->Add(outPrv, wxSizerFlags().Border(wxALL));
+    btnCpPrev = new wxButton(panelOutPrv, wxID_ANY, "Copiar");
+    boxOutPrv2->Add(btnCpPrev, wxSizerFlags().Border(wxALL));
 
-    btnCpPrev = new wxButton(panelOutHa, wxID_ANY, "Copiar");
+    boxOutPrv->Add(boxOutPrv2, wxSizerFlags().Right().Border(wxALL));
 
-    boxOutHa->Add(btnCpPrev, wxSizerFlags().Border(wxALL));
-    panelOutHa->SetSizerAndFit(boxOutHa);
-    panelHa->SetSizerAndFit(boxHa);
+    panelOutPrv->SetSizerAndFit(boxOutPrv);
+    panelPrv->SetSizerAndFit(boxHa);
 
     // Painel Botao calcular
 

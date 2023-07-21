@@ -48,15 +48,27 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
+    <Image Include="cpToClipboard.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="calculadora_plantio.ico">
+    <Image Include="assets\calculadora_plantio.ico">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\calculadora_plantio.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\cpToClipboard.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\small.ico">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="xrcDesign.xrc">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\cpToClipboard.xpm">
       <Filter>Arquivos de Recurso</Filter>
     </None>
   </ItemGroup>

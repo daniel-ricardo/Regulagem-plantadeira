@@ -53,7 +53,7 @@ public:
     wxStaticText* labelTituloResultadoSmt;
     wxTextCtrl* outAdb;
     wxTextCtrl* outSmt;
-    wxTextCtrl* outHa;
+    wxTextCtrl* outPrv;
     wxStaticText* tituloAdb;
     wxStaticText* tituloSmt;
 

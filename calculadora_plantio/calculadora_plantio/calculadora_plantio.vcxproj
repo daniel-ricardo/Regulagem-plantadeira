@@ -176,10 +176,14 @@
     <ResourceCompile Include="calculadora_plantio.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="calculadora_plantio.ico" />
-    <Image Include="small.ico" />
+    <Image Include="assets\calculadora_plantio.ico" />
+    <Image Include="assets\calculadora_plantio.png" />
+    <Image Include="assets\cpToClipboard.png" />
+    <Image Include="assets\small.ico" />
+    <Image Include="cpToClipboard.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\cpToClipboard.xpm" />
     <None Include="xrcDesign.xrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
