@@ -6,37 +6,57 @@ Colocando as quantidades em quilo por hectare de semente e adubo, o programa vai
 
 ## Imagens:
 
-![v1.1.0 no Windows](v1.1.0_win64.png)<br/>
-<b>Janela padrão no Windows</b>
-
-![v1.1.0 no Windows](v1.1.0_win64_values.png)<br/>
-<b>Janela com valores calculados</b>
-
+<figure>
+	<img src="assets/v1.1.0_win64.png" alt="janela padrão" title="v1.1.0 no Windows" width="300">
+	<figcaption>Janela padrão no Windows</figcaption>
+</figure>
+<figure>
+	<img src="assets/v1.1.0_win64_values.png" alt="valores calculados" title="v1.1.0 no Windows" width="300">
+	<figcaption>Janela com valores calculados</figcaption>
+</figure>
 
 *****
 
-## O cálculo:
-
-> Área de teste (hectares) **=** **(** Espaçamento **x** Tiro **)** **/** 100
-
-Aplicando a regra de três:
-
-> Alvo  -> 1 Hectare  
-> Teste(?) ->  Área de teste
-
-> Teste **x** 10 000 m² **=** Alvo **x** **(** Espaçamento **x** Tiro **)** **/** 100
-
-Simplificando:
-
-> Teste **=** ( Alvo **x** Espaçamento **x** Tiro ) **/** 1000
-
-- *Teste*: Quantidade que a plantadeira deve soltar na regulagem (em gramas)
-- *Alvo*: Quilos por hectare
-- *Espaçamento*: Distância entre uma linha e outra (em centímetros)
-- *Tiro*: Comprimento da área de teste
+## Utilização
 
 Os valores padrão são 17 centímetros de espaçamento e 25 metros de tiro, mas podem ser alterados.
 
-Colocando quantos hectares serão plantados, também ‚ possível ter uma previsão do total a ser gasto.
+Colocando quantos hectares serão plantados, também é possível ter uma previsão do total a ser gasto.
 
 A seleção de culturas não afeta o funcionamento do programa (na versão atual).
+
+## O cálculo:
+
+Os dados necessários para realizar o cálculo:
+
+- *Alvo*: Quantide de quilos a cair por hectare
+- *Espaçamento*: Distância entre uma linha e outra (em centímetros)
+- *Tiro*: Comprimento da área de teste
+
+A quantidade que a plantadeira deve soltar na regulagem (em gramas) será chamada de *Teste*.
+
+A relação entre os dados:
+
+$$ \textrm{Alvo}\ kg \longrightarrow \textrm{1 Hectare}\ m^2 $$
+
+$$ \textrm{Teste}\ g \longrightarrow \textrm{Área de teste}\ m^2 $$
+
+Aplicando a regra de três, temos a equação 1:
+
+$$ \textrm{Teste}\ g \cdot 10000 m^2 = \textrm{Alvo}\ kg  \cdot  \textrm{Área de teste}\ m^2 $$
+
+Como o espaçamento é medido em centímetros e o tiro em metros, o valor da área de teste também pode ser descrito como:
+
+$$ \textrm{Área de teste}\ m^2 = \frac{\textrm{Espaçamento}}{100}\ m \cdot \textrm{Tiro}\ m  \Longrightarrow { \textrm{Espaçamento}\ m \cdot \textrm{Tiro}\ m \over 100 } $$
+
+Substituindo na equação 1:
+
+$$ \textrm{Teste}\ g \cdot 10000 m^2 = \textrm{Alvo}\ kg \cdot { \textrm{Espaçamento}\ m \cdot \textrm{Tiro}\ m \over 100 } $$
+
+Convertendo o alvo para a unidade padrão de gramas:
+
+$$ \textrm{Teste}\ g \cdot 10000 m^2 = \textrm{Alvo}\ g \cdot 1000 \cdot { \textrm{Espaçamento}\ m \cdot \textrm{Tiro}\ m \over 100 } $$
+
+Simplificando:
+
+$$ \textrm{Teste} = { \textrm{Alvo} \cdot \textrm{Espaçamento} \cdot \textrm{Tiro} \over 1000 } $$
