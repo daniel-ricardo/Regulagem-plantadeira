@@ -31,64 +31,6 @@ bool calculadoraRegulagem::OnInit()
     return true;
 }
 
-<<<<<<< HEAD
-mainFrame::mainFrame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style,
-	const wxString& name) : wxFrame()
-{
-    if (!Create(parent, id, title, pos, size, style, name)) { return; }
-}
-
-mainFrame::~mainFrame() {
-	wxXmlResource::Get()->Unload("assets/design.xrc");
-	wxWindow::Destroy();
-}
-
-wxIMPLEMENT_APP(calculadoraRegulagem);
-
-void mainFrame::initFrameFromXRC()
-{
-
-	wxXmlResource::Get()->LoadFrame(this, NULL, "mainFrame");
-	panelMain = XRCCTRL(*this, "panelMain", wxPanel);
-	panelGeral = XRCCTRL(*this, "panelGeral", wxPanel);
-	panelCult = XRCCTRL(*this, "panelCult", wxPanel);
-	labelCult = XRCCTRL(*this, "labelCult", wxStaticText);
-	boxCult = XRCCTRL(*this, "boxCult", wxChoice);
-	panelEspc = XRCCTRL(*this, "panelEspc", wxPanel);
-	labelEspc = XRCCTRL(*this, "labelEspc", wxStaticText);
-	inEspc = XRCCTRL(*this, "inEspc", wxSpinCtrlDouble);
-	panelTiro = XRCCTRL(*this, "panelTiro", wxPanel);
-	labelTiro = XRCCTRL(*this, "labelTiro", wxStaticText);
-	inTiro = XRCCTRL(*this, "inTiro", wxSpinCtrlDouble);
-	panelSmt = XRCCTRL(*this, "panelSmt", wxPanel);
-	panelInSmt = XRCCTRL(*this, "panelInSmt", wxPanel);
-	tituloSmt = XRCCTRL(*this, "tituloSmt", wxStaticText);
-	labelKghaSmt = XRCCTRL(*this, "labelKghaSmt", wxStaticText);
-	inKgSmt = XRCCTRL(*this, "inKgSmt", wxSpinCtrlDouble);
-	panelOutSmt = XRCCTRL(*this, "panelOutSmt", wxPanel);
-	labelTituloResultadoSmt = XRCCTRL(*this, "labelTituloResultadoSmt", wxStaticText);
-	outSmt = XRCCTRL(*this, "outSmt", wxTextCtrl);
-	btnCpSmt = XRCCTRL(*this, "btnCpSmt", wxButton);
-	panelAdb = XRCCTRL(*this, "panelAdb", wxPanel);
-	panelInAdb = XRCCTRL(*this, "panelInAdb", wxPanel);
-	tituloAdb = XRCCTRL(*this, "tituloAdb", wxStaticText);
-	labelKghaAdb = XRCCTRL(*this, "labelKghaAdb", wxStaticText);
-	inKgAdb = XRCCTRL(*this, "inKgAdb", wxSpinCtrlDouble);
-	panelOutAdb = XRCCTRL(*this, "panelOutAdb", wxPanel);
-	labelTituloResultadoAdb = XRCCTRL(*this, "labelTituloResultadoAdb", wxStaticText);
-	outAdb = XRCCTRL(*this, "outAdb", wxTextCtrl);
-	btnCpAdb = XRCCTRL(*this, "btnCpAdb", wxButton);
-	panelPrv = XRCCTRL(*this, "panelPrv", wxPanel);
-	panelInHa = XRCCTRL(*this, "panelInHa", wxPanel);
-	labelHa = XRCCTRL(*this, "labelHa", wxStaticText);
-	inHa = XRCCTRL(*this, "inHa", wxSpinCtrlDouble);
-	panelOutPrv = XRCCTRL(*this, "panelOutPrv", wxPanel);
-	labelPrv = XRCCTRL(*this, "labelPrv", wxStaticText);
-	outPrv = XRCCTRL(*this, "outPrv", wxTextCtrl);
-	btnCpPrv = XRCCTRL(*this, "btnCpPrv", wxButton);
-	panelBtnCalc = XRCCTRL(*this, "panelBtnCalc", wxPanel);
-	btnCalc = XRCCTRL(*this, "btnCalc", wxButton);
-=======
 void mainFrame::fazerCalculoRegulagem(wxCommandEvent& event)
 {
 	// TO-DO: Usar apenas uma variavel regulagem (issue #12)
@@ -135,7 +77,6 @@ void mainFrame::copiarPrevisaoClipboard(wxCommandEvent& event)
 		wxTheClipboard->SetData(new wxTextDataObject(outPrv->GetValue()));
 		wxTheClipboard->Close();
 	}
->>>>>>> 633b1ce (closes #8 #12)
 }
 
 /*
@@ -165,8 +106,6 @@ void mainFrame::copiarPrevisaoClipboard(wxCommandEvent& event)
  *			       + wxBoxSizer boxOutPrv2 (Horizontal)
  *         + wxPanel panelBtnCalc, wxBoxSizer boxBtnCalc (Vertical)
  */
-<<<<<<< HEAD
-=======
 
 mainFrame::mainFrame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style,
 	const wxString& name) : wxFrame()
@@ -285,4 +224,3 @@ void mainFrame::initFrameFromXRC()
 }
 
 
->>>>>>> 633b1ce (closes #8 #12)

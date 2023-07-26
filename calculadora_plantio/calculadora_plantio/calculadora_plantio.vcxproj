@@ -99,11 +99,7 @@
       <AdditionalDependencies>fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-<<<<<<< HEAD
-      <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)"</Command>
-=======
       <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)assets"</Command>
->>>>>>> 633b1ce (closes #8 #12)
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copia assets para o build de release</Message>
@@ -131,11 +127,7 @@
       <AdditionalDependencies>fmt.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-<<<<<<< HEAD
-      <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)"</Command>
-=======
       <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)assets"</Command>
->>>>>>> 633b1ce (closes #8 #12)
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copia assets para o build de release</Message>
@@ -158,11 +150,7 @@
       <AdditionalDependencies>fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-<<<<<<< HEAD
-      <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)"</Command>
-=======
       <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)assets"</Command>
->>>>>>> 633b1ce (closes #8 #12)
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copia assets para o build de release</Message>
@@ -190,11 +178,7 @@
       <AdditionalDependencies>fmt.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-<<<<<<< HEAD
-      <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)"</Command>
-=======
       <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)assets"</Command>
->>>>>>> 633b1ce (closes #8 #12)
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copia assets para o build de release</Message>
