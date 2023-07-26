@@ -2,7 +2,7 @@
 <resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
 	<object class="wxFrame" name="mainFrame">
 		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
-		<size>500,430</size>
+		<size>470,400</size>
 		<title>Calculadora de regulagem de plantadeira</title>
 		<centered>1</centered>
 				<object class="wxPanel" name="panelMain">
@@ -447,7 +447,7 @@
 						</object>
 						<object class="sizeritem">
 							<option>0</option>
-							<flag>wxALIGN_CENTER|wxALL</flag>
+							<flag>wxALIGN_RIGHT|wxALL</flag>
 							<border>5</border>
 							<object class="wxPanel" name="panelBtnCalc">
 								<style>wxTAB_TRAVERSAL</style>
@@ -455,7 +455,7 @@
 									<orient>wxVERTICAL</orient>
 									<object class="sizeritem">
 										<option>0</option>
-										<flag>wxALIGN_RIGHT|wxALL</flag>
+										<flag>wxALIGN_CENTER|wxALL</flag>
 										<border>5</border>
 										<object class="wxButton" name="btnCalc">
 											<label>Calcular</label>

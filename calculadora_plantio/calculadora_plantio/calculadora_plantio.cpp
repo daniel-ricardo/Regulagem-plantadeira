@@ -39,13 +39,13 @@ mainFrame::mainFrame(wxWindow* parent, wxWindowID id, const wxString& title, con
 
 mainFrame::~mainFrame() {
 	wxXmlResource::Get()->Unload("assets/design.xrc");
-	wxWindow::Close();
 	wxWindow::Destroy();
 }
 
 wxIMPLEMENT_APP(calculadoraRegulagem);
 
-void mainFrame::initFrameFromXRC() {
+void mainFrame::initFrameFromXRC()
+{
 
 	wxXmlResource::Get()->LoadFrame(this, NULL, "mainFrame");
 	panelMain = XRCCTRL(*this, "panelMain", wxPanel);
