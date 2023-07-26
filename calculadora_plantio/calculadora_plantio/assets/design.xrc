@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+	<object class="wxFrame" name="mainFrame">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>500,430</size>
+		<title>Calculadora de regulagem de plantadeira</title>
+		<centered>1</centered>
+				<object class="wxPanel" name="panelMain">
+					<style>wxTAB_TRAVERSAL</style>
+					<object class="wxBoxSizer">
+						<orient>wxVERTICAL</orient>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxALIGN_CENTER|wxALL</flag>
+							<border>5</border>
+							<object class="wxPanel" name="panelGeral">
+								<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+								<object class="wxBoxSizer">
+									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelCult">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelCult">
+														<label>Cultura:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxChoice" name="boxCult">
+														<selection>11</selection>
+														<content>
+															<item>Aveia</item>
+															<item>Cevada</item>
+															<item>Feijão</item>
+															<item>Milheto</item>
+															<item>Milho</item>
+															<item>Soja</item>
+															<item>Trigo</item>
+															<item>Triguilho</item>
+															<item>Triticalhe</item>
+															<item>Outro...</item>
+														</content>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelEspc">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelEspc">
+														<label>Espaçamento das linhas (cm):</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxSpinCtrlDouble" name="inEspc">
+														<style>wxALIGN_RIGHT</style>
+														<value>1.000000</value>
+														<min>1</min>
+														<max>1000</max>
+														<inc>1</inc>
+														<digits>0</digits>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelTiro">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelTiro">
+														<label>Tiro (m):</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxSpinCtrlDouble" name="inTiro">
+														<style>wxSP_ARROW_KEYS</style>
+														<value>0</value>
+														<min>1</min>
+														<max>1000</max>
+														<inc>1</inc>
+														<digits>0</digits>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxALIGN_CENTER|wxALL</flag>
+							<border>5</border>
+							<object class="wxPanel" name="panelSmt">
+								<style>wxTAB_TRAVERSAL</style>
+								<object class="wxBoxSizer">
+									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelInSmt">
+											<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="tituloSmt">
+														<label>Semente</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxStaticText" name="labelKghaSmt">
+																<label>Kg / Ha</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>5</border>
+															<object class="wxSpinCtrlDouble" name="inKgSmt">
+																<style>wxSP_ARROW_KEYS</style>
+																<value>0</value>
+																<min>0</min>
+																<max>1000</max>
+																<inc>1</inc>
+																<digits>0</digits>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelOutSmt">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelTituloResultadoSmt">
+														<label>Gramas por tiro: (Semente)</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxTextCtrl" name="outSmt">
+																<style>wxTE_READONLY</style>
+																<value>0.0</value>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxButton" name="btnCpSmt">
+																<label>Copiar</label>
+																<default>0</default>
+																<auth_needed>0</auth_needed>
+																<markup>0</markup>
+																<bitmap />
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxALIGN_CENTER|wxALL</flag>
+							<border>5</border>
+							<object class="wxPanel" name="panelAdb">
+								<style>wxTAB_TRAVERSAL</style>
+								<object class="wxBoxSizer">
+									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelInAdb">
+											<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="tituloAdb">
+														<label>Adubo</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxStaticText" name="labelKghaAdb">
+																<label>Kg / Ha</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxSpinCtrlDouble" name="inKgAdb">
+																<style>wxSP_ARROW_KEYS</style>
+																<value>1.000000</value>
+																<min>0</min>
+																<max>1000</max>
+																<inc>1</inc>
+																<digits>0</digits>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelOutAdb">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelTituloResultadoAdb">
+														<label>Gramas por tiro: (Adubo)</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxTextCtrl" name="outAdb">
+																<style>wxTE_READONLY</style>
+																<value>0.0</value>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxButton" name="btnCpAdb">
+																<label>Copiar</label>
+																<default>0</default>
+																<auth_needed>0</auth_needed>
+																<markup>0</markup>
+																<bitmap />
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxALIGN_CENTER|wxALL</flag>
+							<border>5</border>
+							<object class="wxPanel" name="panelPrv">
+								<style>wxTAB_TRAVERSAL</style>
+								<object class="wxBoxSizer">
+									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelInHa">
+											<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelHa">
+														<label>Hectares:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxSpinCtrlDouble" name="inHa">
+														<style>wxSP_ARROW_KEYS</style>
+														<value>0</value>
+														<min>0</min>
+														<max>1000</max>
+														<inc>1</inc>
+														<digits>0</digits>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelOutPrv">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelPrv">
+														<label>Previsão:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxTextCtrl" name="outPrv">
+																<style>wxTE_READONLY</style>
+																<size>280,-1</size>
+																<font>
+																	<style>normal</style>
+																	<weight>normal</weight>
+																	<underlined>0</underlined>
+																</font>
+																<value>0 kg de semente e 0 kg de adubo</value>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER|wxALL</flag>
+															<border>5</border>
+															<object class="wxButton" name="btnCpPrv">
+																<label>Copiar</label>
+																<default>0</default>
+																<auth_needed>0</auth_needed>
+																<markup>0</markup>
+																<bitmap />
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxALIGN_CENTER|wxALL</flag>
+							<border>5</border>
+							<object class="wxPanel" name="panelBtnCalc">
+								<style>wxTAB_TRAVERSAL</style>
+								<object class="wxBoxSizer">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_RIGHT|wxALL</flag>
+										<border>5</border>
+										<object class="wxButton" name="btnCalc">
+											<label>Calcular</label>
+											<default>0</default>
+											<auth_needed>0</auth_needed>
+											<markup>0</markup>
+											<bitmap />
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+</resource>

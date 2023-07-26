@@ -16,27 +16,37 @@
 #include <wx/image.h>
 #include <wx/icon.h>
 #include <wx/frame.h>
+#include <wx/panel.h>
 #include <wx/spinctrl.h>
 #include <wx/textctrl.h>
 #include "regulagem.hpp"
 
-class frameMain : public wxFrame
+class mainFrame : public wxFrame
 {
-private:
-
-    void fazerCalculoRegulagem(wxCommandEvent& event);
-    void copiarSementeClipboard(wxCommandEvent& event);
-    void copiarAduboClipboard(wxCommandEvent& event);
-    void copiarPrevisaoClipboard(wxCommandEvent& event);
-
-public:
+protected:
 
     Regulagem* regulagem;
-    wxButton* btnCalcular;
-    wxButton* btnCpPrev;
-    wxButton* btnCpSmt;
+
+    wxButton* btnCalc;
     wxButton* btnCpAdb;
+    wxButton* btnCpPrv;
+    wxButton* btnCpSmt;
     wxChoice* boxCult;
+    wxPanel* panelAdb;
+    wxPanel* panelBtnCalc;
+    wxPanel* panelCult;
+    wxPanel* panelEspc;
+    wxPanel* panelGeral;
+    wxPanel* panelInAdb;
+    wxPanel* panelInHa;
+    wxPanel* panelInSmt;
+    wxPanel* panelMain;
+    wxPanel* panelOutAdb;
+    wxPanel* panelOutPrv;
+    wxPanel* panelOutSmt;
+    wxPanel* panelPrv;
+    wxPanel* panelSmt;
+    wxPanel* panelTiro;
     wxSpinCtrlDouble* inEspc;
     wxSpinCtrlDouble* inHa;
     wxSpinCtrlDouble* inKgAdb;
@@ -44,23 +54,24 @@ public:
     wxSpinCtrlDouble* inTiro;
     wxStaticText* labelCult;
     wxStaticText* labelEspc;
-    wxStaticText* labelHectares;
+    wxStaticText* labelHa;
     wxStaticText* labelKghaAdb;
     wxStaticText* labelKghaSmt;
-    wxStaticText* labelPrevisao;
+    wxStaticText* labelPrv;
     wxStaticText* labelTiro;
     wxStaticText* labelTituloResultadoAdb;
     wxStaticText* labelTituloResultadoSmt;
-    wxTextCtrl* outAdb;
-    wxTextCtrl* outSmt;
-    wxTextCtrl* outPrv;
     wxStaticText* tituloAdb;
     wxStaticText* tituloSmt;
+    wxTextCtrl* outAdb;
+    wxTextCtrl* outPrv;
+    wxTextCtrl* outSmt;
 
-    frameMain(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title =
-        "Calcular Regulagem da Plantadeira", const wxPoint& pos = wxDefaultPosition, const wxSize& size =
-        wxSize(550, 350), long style = wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL,
+public:
+    mainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title =
+        "Calculadora de regulagem de plantadeira", const wxPoint& pos = wxDefaultPosition, const wxSize& size =
+        wxSize(500, 300), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL,
         const wxString& name = wxFrameNameStr);
-    ~frameMain();
-
+    ~mainFrame();
+    void initFrameFromXRC();
 };

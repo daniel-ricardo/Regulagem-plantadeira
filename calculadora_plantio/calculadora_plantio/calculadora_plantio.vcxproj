@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\cpToClipboard.xpm" />
+    <None Include="assets\design.xrc" />
     <None Include="xrcDesign.xrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

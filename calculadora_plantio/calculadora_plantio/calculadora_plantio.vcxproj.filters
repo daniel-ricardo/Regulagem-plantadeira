@@ -71,5 +71,8 @@
     <None Include="assets\cpToClipboard.xpm">
       <Filter>Arquivos de Recurso</Filter>
     </None>
+    <None Include="assets\design.xrc">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
   </ItemGroup>
 </Project>

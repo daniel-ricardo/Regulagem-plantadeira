@@ -5,15 +5,24 @@ Colocando as quantidades em quilo por hectare de semente e adubo, o programa vai
 *****
 
 ## Imagens:
-
-<figure>
-	<img src="assets/v1.1.0_win64.png" alt="janela padrão" title="v1.1.0 no Windows" width="300">
-	<figcaption>Janela padrão no Windows</figcaption>
-</figure>
-<figure>
-	<img src="assets/v1.1.0_win64_values.png" alt="valores calculados" title="v1.1.0 no Windows" width="300">
-	<figcaption>Janela com valores calculados</figcaption>
-</figure>
+<table>
+	<thead>
+		<tr>
+			<th>Janela padrão no Windows</th>
+			<th>Janela com valores calculados</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<img src="assets/v1.1.0_win64.png" alt="janela padrão" title="v1.1.0 no Windows">
+			</td>
+			<td>
+				<img src="assets/v1.1.0_win64_values.png" alt="valores calculados" title="v1.1.0 no Windows">
+			</td>
+		</tr>
+	</tbody>
+</table>
 
 *****
 
@@ -39,24 +48,24 @@ A relação entre os dados:
 
 $$ \textrm{Alvo}\ kg \longrightarrow \textrm{1 Hectare}\ m^2 $$
 
-$$ \textrm{Teste}\ g \longrightarrow \textrm{Área de teste}\ m^2 $$
+$$ \textrm{Teste} \longrightarrow \textrm{Área de teste}\ m^2 $$
 
 Aplicando a regra de três, temos a equação 1:
 
-$$ \textrm{Teste}\ g \cdot 10000 m^2 = \textrm{Alvo}\ kg  \cdot  \textrm{Área de teste}\ m^2 $$
+$$ \textrm{Teste} \cdot 10000 m^2 = \textrm{Alvo}\ kg  \cdot  \textrm{Área de teste}\ m^2 $$
 
 Como o espaçamento é medido em centímetros e o tiro em metros, o valor da área de teste também pode ser descrito como:
 
-$$ \textrm{Área de teste}\ m^2 = \frac{\textrm{Espaçamento}}{100}\ m \cdot \textrm{Tiro}\ m  \Longrightarrow { \textrm{Espaçamento}\ m \cdot \textrm{Tiro}\ m \over 100 } $$
+$$ \textrm{Área de teste}\ m^2 = \textrm{Espaçamento}\ cm \cdot \textrm{Tiro}\ m $$
 
 Substituindo na equação 1:
 
-$$ \textrm{Teste}\ g \cdot 10000 m^2 = \textrm{Alvo}\ kg \cdot { \textrm{Espaçamento}\ m \cdot \textrm{Tiro}\ m \over 100 } $$
+$$ \textrm{Teste} \cdot 10000 m^2 = \textrm{Alvo}\ kg \cdot \textrm{Espaçamento}\ cm \cdot \textrm{Tiro}\ m $$
 
-Convertendo o alvo para a unidade padrão de gramas:
+Convertendo o alvo para a unidade de gramas e o espaçamento para metros:
 
-$$ \textrm{Teste}\ g \cdot 10000 m^2 = \textrm{Alvo}\ g \cdot 1000 \cdot { \textrm{Espaçamento}\ m \cdot \textrm{Tiro}\ m \over 100 } $$
+$$ \textrm{Teste} \cdot 10000 m^2 = \textrm{Alvo}\ g \cdot 1000 \cdot { \textrm{Espaçamento} \over 100 } \ m \cdot \textrm{Tiro}\ m $$
 
 Simplificando:
 
-$$ \textrm{Teste} = { \textrm{Alvo} \cdot \textrm{Espaçamento} \cdot \textrm{Tiro} \over 1000 } $$
+$$ \textrm{Teste} = { \textrm{Alvo} \cdot \textrm{Espaçamento} \cdot \textrm{Tiro} \over 1000 }\ g $$
