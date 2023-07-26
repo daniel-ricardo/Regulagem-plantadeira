@@ -65,9 +65,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="xrcDesign.xrc">
-      <Filter>Arquivos de Recurso</Filter>
-    </None>
     <None Include="assets\cpToClipboard.xpm">
       <Filter>Arquivos de Recurso</Filter>
     </None>

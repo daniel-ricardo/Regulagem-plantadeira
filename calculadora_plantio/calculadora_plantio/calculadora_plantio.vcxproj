@@ -99,7 +99,7 @@
       <AdditionalDependencies>fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)assets"</Command>
+      <Command>xcopy /y "$(ProjectDir)assets" "$(OutDir)assets"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copia assets para o build de release</Message>
@@ -127,7 +127,7 @@
       <AdditionalDependencies>fmt.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)assets"</Command>
+      <Command>xcopy /y "$(ProjectDir)assets" "$(OutDir)assets"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copia assets para o build de release</Message>
@@ -150,7 +150,7 @@
       <AdditionalDependencies>fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)assets"</Command>
+      <Command>xcopy /y "$(ProjectDir)assets" "$(OutDir)assets"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copia assets para o build de release</Message>
@@ -178,7 +178,7 @@
       <AdditionalDependencies>fmt.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /i "$(ProjectDir)assets" "$(OutDir)assets"</Command>
+      <Command>xcopy /y "$(ProjectDir)assets" "$(OutDir)assets"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copia assets para o build de release</Message>
@@ -209,7 +209,6 @@
   <ItemGroup>
     <None Include="assets\cpToClipboard.xpm" />
     <None Include="assets\design.xrc" />
-    <None Include="xrcDesign.xrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

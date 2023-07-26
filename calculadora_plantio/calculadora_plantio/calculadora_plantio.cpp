@@ -33,7 +33,6 @@ bool calculadoraRegulagem::OnInit()
 
 void mainFrame::fazerCalculoRegulagem(wxCommandEvent& event)
 {
-	// TO-DO: Usar apenas uma variavel regulagem (issue #12)
 	auto* regulagem = new Regulagem();
 	// Configurando regulagem conforme input do usuario
 	regulagem->setCult("teste");
