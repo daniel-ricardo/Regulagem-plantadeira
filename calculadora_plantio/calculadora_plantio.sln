@@ -4,11 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calculadora_plantio", "calculadora_plantio\calculadora_plantio.vcxproj", "{10D25E28-1915-4685-8033-651B3FDD64BA}"
-	ProjectSection(ProjectDependencies) = postProject
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD} = {56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fmt", "..\..\..\..\..\..\..\..\Dev\fmt-10.0.0\build\fmt.vcxproj", "{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,22 +33,6 @@ Global
 		{10D25E28-1915-4685-8033-651B3FDD64BA}.RelWithDebInfo|x64.Build.0 = Release|x64
 		{10D25E28-1915-4685-8033-651B3FDD64BA}.RelWithDebInfo|x86.ActiveCfg = Release|Win32
 		{10D25E28-1915-4685-8033-651B3FDD64BA}.RelWithDebInfo|x86.Build.0 = Release|Win32
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.Debug|x64.ActiveCfg = Debug|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.Debug|x64.Build.0 = Debug|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.Debug|x86.ActiveCfg = Debug|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.Debug|x86.Build.0 = Debug|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.MinSizeRel|x64.Build.0 = MinSizeRel|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.MinSizeRel|x86.ActiveCfg = MinSizeRel|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.MinSizeRel|x86.Build.0 = MinSizeRel|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.Release|x64.ActiveCfg = Release|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.Release|x64.Build.0 = Release|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.Release|x86.ActiveCfg = Release|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.Release|x86.Build.0 = Release|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.RelWithDebInfo|x86.ActiveCfg = RelWithDebInfo|x64
-		{56A6E0BE-62B0-35FA-B2A8-230D788B7CAD}.RelWithDebInfo|x86.Build.0 = RelWithDebInfo|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

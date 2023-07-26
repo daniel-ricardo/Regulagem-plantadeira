@@ -23,8 +23,19 @@
 
 class mainFrame : public wxFrame
 {
+<<<<<<< HEAD
 protected:
 
+=======
+private:
+
+    void fazerCalculoRegulagem(wxCommandEvent& event);
+    void copiarSementeClipboard(wxCommandEvent& event);
+    void copiarAduboClipboard(wxCommandEvent& event);
+    void copiarPrevisaoClipboard(wxCommandEvent& event);
+
+protected:
+>>>>>>> 633b1ce (closes #8 #12)
     Regulagem* regulagem;
 
     wxButton* btnCalc;
