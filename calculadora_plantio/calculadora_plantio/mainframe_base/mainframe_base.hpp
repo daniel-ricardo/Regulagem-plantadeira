@@ -19,7 +19,7 @@
 #include <wx/panel.h>
 #include <wx/spinctrl.h>
 #include <wx/textctrl.h>
-#include "regulagem.hpp"
+#include "../regulagem/regulagem.hpp"
 
 class mainFrame : public wxFrame
 {

@@ -7,8 +7,9 @@
 #include <fmt/format.h>
 #include <locale>
 
-#include "framemain_base.hpp"
-#include "regulagem.hpp"
+#include "mainframe_base/mainframe_base.hpp"
+#include "regulagem/regulagem.hpp"
+#include "calculadora_plantio.hpp"
 
 class calculadoraRegulagem : public wxApp
 {
@@ -221,5 +222,4 @@ void mainFrame::initFrameFromXRC()
 	Bind(wxEVT_BUTTON, &mainFrame::copiarSementeClipboard, this, btnCpSmt->GetId(), -1, 0);
 	Bind(wxEVT_BUTTON, &mainFrame::copiarPrevisaoClipboard, this, btnCpPrv->GetId(), -1, 0);
 }
-
 

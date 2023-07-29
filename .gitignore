@@ -6,6 +6,13 @@
 # Arquivos java
 /java/*.class
 
+# cmake
+build/
+CMakeFiles/
+
+# binario linux
+*.bin
+
 # User-specific files
 *.rsuser
 *.suo
@@ -35,6 +42,9 @@ bld/
 [Oo]ut/
 [Ll]og/
 [Ll]ogs/
+
+# Visual Studio Code
+.vscode/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

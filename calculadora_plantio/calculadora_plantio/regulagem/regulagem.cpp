@@ -23,7 +23,7 @@ Regulagem::Regulagem() :espacamento(17), tiro(25), cultura(""),
         semente(static_cast<Regulagem::Semente*>(new Regulagem::Semente())), adubo(static_cast<Regulagem::Adubo*>(new Regulagem::Adubo())) {}
 Regulagem::Regulagem(float e, float t, std::string c, float g) :espacamento(e), tiro(t), cultura(c),
         semente(static_cast<Regulagem::Semente*>(new Regulagem::Semente(g))), adubo(static_cast<Regulagem::Adubo*>(new Regulagem::Adubo())) {}
-Regulagem::~Regulagem() { delete& espacamento; delete& tiro; delete& cultura; delete semente; delete adubo; }
+Regulagem::~Regulagem() { delete &espacamento; delete &tiro; delete &cultura; delete semente; delete adubo; }
 
 void Regulagem::setEspc(float e) 
 {
@@ -59,7 +59,7 @@ void Regulagem::printRegulagem()
     {
         std::printf("Cultura: %s\n", this->getCult().c_str());
     }
-    std::printf("Regulagem: espacamento de %.0f centímetros\n", round(this->getEspc()));
+    std::printf("Regulagem: espacamento de %.0f cent?metros\n", round(this->getEspc()));
     std::printf("\nSemente: ");
     if (std::strcmp(this->semente->getVari().c_str(), "") != 0)
     {
