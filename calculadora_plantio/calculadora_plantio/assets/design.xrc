@@ -5,497 +5,131 @@
 		<size>470,400</size>
 		<title>Calculadora de regulagem de plantadeira</title>
 		<centered>1</centered>
-				<object class="wxPanel" name="panelMain">
-					<style>wxTAB_TRAVERSAL</style>
-					<object class="wxBoxSizer">
-						<orient>wxVERTICAL</orient>
-						<object class="sizeritem">
-							<option>0</option>
-							<flag>wxALIGN_CENTER|wxALL</flag>
-							<border>5</border>
-							<object class="wxPanel" name="panelGeral">
-								<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
-								<object class="wxBoxSizer">
-									<orient>wxHORIZONTAL</orient>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelCult">
-											<style>wxTAB_TRAVERSAL</style>
-											<tooltip>Selecione qual Cultura de Sementes vai ser plantada</tooltip>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="labelCult">
-														<label>Cultura:</label>
-														<tooltip>Selecione qual Cultura de Sementes vai ser plantada</tooltip>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxChoice" name="boxCult">
-														<tooltip>Selecione qual Cultura de Sementes vai ser plantada</tooltip>
-														<selection>11</selection>
-														<content>
-															<item>Aveia</item>
-															<item>Cevada</item>
-															<item>Feijão</item>
-															<item>Milheto</item>
-															<item>Milho</item>
-															<item>Soja</item>
-															<item>Trigo</item>
-															<item>Triguilho</item>
-															<item>Triticalhe</item>
-															<item>Outro...</item>
-														</content>
-													</object>
-												</object>
+		<object class="wxPanel" name="panelMain">
+			<style>wxTAB_TRAVERSAL</style>
+			<object class="wxBoxSizer">
+				<orient>wxVERTICAL</orient>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxALIGN_CENTER|wxALL</flag>
+					<border>5</border>
+					<object class="wxPanel" name="panelGeral">
+						<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelCult">
+									<style>wxTAB_TRAVERSAL</style>
+									<tooltip>Selecione qual Cultura de Sementes vai ser plantada</tooltip>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="labelCult">
+												<label>Cultura:</label>
+												<tooltip>Selecione qual Cultura de Sementes vai ser plantada</tooltip>
+												<wrap>-1</wrap>
 											</object>
 										</object>
-									</object>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelEspc">
-											<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
-											<style>wxTAB_TRAVERSAL</style>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="labelEspc">
-														<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
-														<label>Espaçamento das linhas (cm):</label>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxSpinCtrlDouble" name="inEspc">
-														<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
-														<style>wxALIGN_RIGHT</style>
-														<value>1.000000</value>
-														<min>1</min>
-														<max>1000</max>
-														<inc>1</inc>
-														<digits>0</digits>
-													</object>
-												</object>
-											</object>
-										</object>
-									</object>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelTiro">
-											<tooltip>Coloque o comprimento da área de regulagem em metros</tooltip>
-											<style>wxTAB_TRAVERSAL</style>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="labelTiro">
-														<tooltip>Coloque o comprimento da área de regulagem em metros</tooltip>
-														<label>Tiro (m):</label>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxSpinCtrlDouble" name="inTiro">
-														<tooltip>Coloque o comprimento da área de regulagem em metros</tooltip>
-														<style>wxSP_ARROW_KEYS</style>
-														<value>0</value>
-														<min>1</min>
-														<max>1000</max>
-														<inc>1</inc>
-														<digits>0</digits>
-													</object>
-												</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxChoice" name="boxCult">
+												<tooltip>Selecione qual Cultura de Sementes vai ser plantada</tooltip>
+												<selection>11</selection>
+												<content>
+													<item>Aveia</item>
+													<item>Cevada</item>
+													<item>Feijão</item>
+													<item>Milheto</item>
+													<item>Milho</item>
+													<item>Soja</item>
+													<item>Trigo</item>
+													<item>Triguilho</item>
+													<item>Triticalhe</item>
+													<item>Outro...</item>
+												</content>
 											</object>
 										</object>
 									</object>
 								</object>
 							</object>
-						</object>
-						<object class="sizeritem">
-							<option>0</option>
-							<flag>wxALIGN_CENTER|wxALL</flag>
-							<border>5</border>
-							<object class="wxPanel" name="panelSmt">
-								<style>wxTAB_TRAVERSAL</style>
-								<object class="wxBoxSizer">
-									<orient>wxHORIZONTAL</orient>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelInSmt">
-											<tooltip>Alvo de semente em quilos por hectare</tooltip>
-											<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="tituloSmt">
-														<tooltip>Alvo de semente em quilos por hectare</tooltip>
-														<label>Semente</label>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>1</option>
-													<flag>wxALL</flag>
-													<border>5</border>
-													<object class="wxBoxSizer">
-														<orient>wxHORIZONTAL</orient>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxStaticText" name="labelKghaSmt">
-																<tooltip>Alvo de semente em quilos por hectare</tooltip>
-																<label>Kg / Ha</label>
-																<wrap>-1</wrap>
-															</object>
-														</object>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALL</flag>
-															<border>5</border>
-															<object class="wxSpinCtrlDouble" name="inKgSmt">
-																<tooltip>Alvo de semente em quilos por hectare</tooltip>
-																<style>wxSP_ARROW_KEYS</style>
-																<value>0</value>
-																<min>0</min>
-																<max>1000</max>
-																<inc>1</inc>
-																<digits>0</digits>
-															</object>
-														</object>
-													</object>
-												</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelEspc">
+									<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
+									<style>wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="labelEspc">
+												<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
+												<label>Espaçamento das linhas (cm):</label>
+												<wrap>-1</wrap>
 											</object>
 										</object>
-									</object>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelOutSmt">
-											<tooltip>A quantidade de gramas de semente por tiro que deve cair para a plantadeira estar regulada</tooltip>
-											<style>wxTAB_TRAVERSAL</style>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="labelTituloResultadoSmt">
-														<label>Gramas por tiro: (Semente)</label>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALL</flag>
-													<border>5</border>
-													<object class="wxBoxSizer">
-														<orient>wxHORIZONTAL</orient>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxTextCtrl" name="outSmt">
-																<tooltip>A quantidade de gramas de semente por tiro que deve cair para a plantadeira estar regulada</tooltip>
-																<style>wxTE_READONLY</style>
-																<value>0.0</value>
-															</object>
-														</object>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxButton" name="btnCpSmt">
-																<tooltip>Copiar gramas de semente por tiro</tooltip>
-																<bitmap />
-																<label>Copiar</label>
-																<default>0</default>
-																<auth_needed>0</auth_needed>
-																<markup>0</markup>
-																<bitmap />
-															</object>
-														</object>
-													</object>
-												</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="inEspc">
+												<size>100,10</size>
+												<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
+												<style>wxALIGN_RIGHT</style>
+												<value>1</value>
+												<min>1</min>
+												<max>999</max>
+												<inc>1</inc>
+												<digits>0</digits>
 											</object>
 										</object>
 									</object>
 								</object>
 							</object>
-						</object>
-						<object class="sizeritem">
-							<option>0</option>
-							<flag>wxALIGN_CENTER|wxALL</flag>
-							<border>5</border>
-							<object class="wxPanel" name="panelAdb">
-								<style>wxTAB_TRAVERSAL</style>
-								<object class="wxBoxSizer">
-									<orient>wxHORIZONTAL</orient>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelInAdb">
-											<tooltip>Alvo de adubo em quilos por hectare</tooltip>
-											<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="tituloAdb">
-														<tooltip>Alvo de adubo em quilos por hectare</tooltip>
-														<label>Adubo</label>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALL</flag>
-													<border>5</border>
-													<object class="wxBoxSizer">
-														<orient>wxHORIZONTAL</orient>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxStaticText" name="labelKghaAdb">
-																<tooltip>Alvo de adubo em quilos por hectare</tooltip>
-																<label>Kg / Ha</label>
-																<wrap>-1</wrap>
-															</object>
-														</object>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxSpinCtrlDouble" name="inKgAdb">
-																<tooltip>Alvo de adubo em quilos por hectare</tooltip>
-																<style>wxSP_ARROW_KEYS</style>
-																<value>0</value>
-																<min>0</min>
-																<max>1000</max>
-																<inc>1</inc>
-																<digits>0</digits>
-															</object>
-														</object>
-													</object>
-												</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelTiro">
+									<tooltip>Coloque o comprimento da área de regulagem em metros</tooltip>
+									<style>wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="labelTiro">
+												<tooltip>Coloque o comprimento da área de regulagem em metros</tooltip>
+												<label>Tiro (m):</label>
+												<wrap>-1</wrap>
 											</object>
 										</object>
-									</object>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelOutAdb">
-											<tooltip>A quantidade de gramas de adubo por tiro que deve cair para a plantadeira estar regulada</tooltip>
-											<style>wxTAB_TRAVERSAL</style>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="labelTituloResultadoAdb">
-														<tooltip>A quantidade de gramas de adubo por tiro que deve cair para a plantadeira estar regulada</tooltip>
-														<label>Gramas por tiro: (Adubo)</label>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxBoxSizer">
-														<orient>wxHORIZONTAL</orient>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxTextCtrl" name="outAdb">
-																<tooltip>A quantidade de gramas de adubo por tiro que deve cair para a plantadeira estar regulada</tooltip>
-																<style>wxTE_READONLY</style>
-																<value>0.0</value>
-															</object>
-														</object>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxButton" name="btnCpAdb">
-																<tooltip>Copiar gramas de adubo por tiro</tooltip>
-																<label>Copiar</label>
-																<default>0</default>
-																<auth_needed>0</auth_needed>
-																<markup>0</markup>
-																<bitmap />
-															</object>
-														</object>
-													</object>
-												</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="inTiro">
+												<size>100,10</size>
+												<tooltip>Coloque o comprimento da área de regulagem em metros</tooltip>
+												<style>wxSP_ARROW_KEYS</style>
+												<value>0</value>
+												<min>1</min>
+												<max>999</max>
+												<inc>1</inc>
+												<digits>0</digits>
 											</object>
-										</object>
-									</object>
-								</object>
-							</object>
-						</object>
-						<object class="sizeritem">
-							<option>0</option>
-							<flag>wxALIGN_CENTER|wxALL</flag>
-							<border>5</border>
-							<object class="wxPanel" name="panelPrv">
-								<style>wxTAB_TRAVERSAL</style>
-								<object class="wxBoxSizer">
-									<orient>wxHORIZONTAL</orient>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelInHa">
-											<tooltip>Quantos hectares planeja serem plantados</tooltip>
-											<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="labelHa">
-														<tooltip>Quantos hectares planeja serem plantados</tooltip>
-														<label>Hectares:</label>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxSpinCtrlDouble" name="inHa">
-														<tooltip>Quantos hectares planeja serem plantados</tooltip>
-														<style>wxSP_ARROW_KEYS</style>
-														<value>0</value>
-														<min>0</min>
-														<max>1000</max>
-														<inc>1</inc>
-														<digits>0</digits>
-													</object>
-												</object>
-											</object>
-										</object>
-									</object>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxPanel" name="panelOutPrv">
-											<tooltip>Gasto de insumos previsto segundo a área planejada</tooltip>
-											<style>wxTAB_TRAVERSAL</style>
-											<object class="wxBoxSizer">
-												<orient>wxVERTICAL</orient>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxALIGN_CENTER|wxALL</flag>
-													<border>5</border>
-													<object class="wxStaticText" name="labelPrv">
-														<tooltip>Gasto de insumos previsto segundo a área planejada</tooltip>
-														<label>Previsão:</label>
-														<wrap>-1</wrap>
-													</object>
-												</object>
-												<object class="sizeritem">
-													<option>0</option>
-													<flag>wxEXPAND</flag>
-													<border>5</border>
-													<object class="wxBoxSizer">
-														<orient>wxHORIZONTAL</orient>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxTextCtrl" name="outPrv">
-																<tooltip>Gasto de insumos previsto segundo a área planejada</tooltip>
-																<style>wxTE_READONLY</style>
-																<size>280,-1</size>
-																<font>
-																	<style>normal</style>
-																	<weight>normal</weight>
-																	<underlined>0</underlined>
-																</font>
-																<value>0 kg de semente e 0 kg de adubo</value>
-															</object>
-														</object>
-														<object class="sizeritem">
-															<option>0</option>
-															<flag>wxALIGN_CENTER|wxALL</flag>
-															<border>5</border>
-															<object class="wxButton" name="btnCpPrv">
-																<tooltip>Copiar previsão de gasto de insumos</tooltip>
-																<label>Copiar</label>
-																<default>0</default>
-																<auth_needed>0</auth_needed>
-																<markup>0</markup>
-																<bitmap />
-															</object>
-														</object>
-													</object>
-												</object>
-											</object>
-										</object>
-									</object>
-								</object>
-							</object>
-						</object>
-						<object class="sizeritem">
-							<option>0</option>
-							<flag>wxALIGN_RIGHT|wxALL</flag>
-							<border>5</border>
-							<object class="wxPanel" name="panelBtnCalc">
-								<style>wxTAB_TRAVERSAL</style>
-								<object class="wxBoxSizer">
-									<orient>wxVERTICAL</orient>
-									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
-										<border>5</border>
-										<object class="wxButton" name="btnCalc">
-											<tooltip>Calcular valores</tooltip>
-											<label>Calcular</label>
-											<default>0</default>
-											<auth_needed>0</auth_needed>
-											<markup>0</markup>
-											<bitmap />
 										</object>
 									</object>
 								</object>
@@ -503,5 +137,376 @@
 						</object>
 					</object>
 				</object>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxALIGN_CENTER|wxALL</flag>
+					<border>5</border>
+					<object class="wxPanel" name="panelSmt">
+						<style>wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelInSmt">
+									<tooltip>Alvo de semente em quilos por hectare</tooltip>
+									<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="tituloSmt">
+												<tooltip>Alvo de semente em quilos por hectare</tooltip>
+												<label>Semente</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>1</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelKghaSmt">
+														<tooltip>Alvo de semente em quilos por hectare</tooltip>
+														<label>Kg / Ha</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="inKgSmt">
+														<size>100,10</size>
+														<tooltip>Alvo de semente em quilos por hectare</tooltip>
+														<style>wxSP_ARROW_KEYS</style>
+														<value>1</value>
+														<min>1</min>
+														<max>999</max>
+														<inc>1</inc>
+														<digits>0</digits>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelOutSmt">
+									<tooltip>A quantidade de gramas de semente por tiro que deve cair para a plantadeira estar regulada</tooltip>
+									<style>wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="labelTituloResultadoSmt">
+												<label>Gramas por tiro: (Semente)</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="outSmt">
+														<tooltip>A quantidade de gramas de semente por tiro que deve cair para a plantadeira estar regulada</tooltip>
+														<style>wxTE_READONLY</style>
+														<value>0.0</value>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxButton" name="btnCpSmt">
+														<tooltip>Copiar gramas de semente por tiro</tooltip>
+														<bitmap />
+														<label>Copiar</label>
+														<default>0</default>
+														<auth_needed>0</auth_needed>
+														<markup>0</markup>
+														<bitmap />
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxALIGN_CENTER|wxALL</flag>
+					<border>5</border>
+					<object class="wxPanel" name="panelAdb">
+						<style>wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelInAdb">
+									<tooltip>Alvo de adubo em quilos por hectare</tooltip>
+									<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="tituloAdb">
+												<tooltip>Alvo de adubo em quilos por hectare</tooltip>
+												<label>Adubo</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelKghaAdb">
+														<tooltip>Alvo de adubo em quilos por hectare</tooltip>
+														<label>Kg / Ha</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="inKgAdb">
+														<size>100,10</size>
+														<tooltip>Alvo de adubo em quilos por hectare</tooltip>
+														<style>wxSP_ARROW_KEYS</style>
+														<value>1</value>
+														<min>1</min>
+														<max>999</max>
+														<inc>1</inc>
+														<digits>0</digits>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelOutAdb">
+									<tooltip>A quantidade de gramas de adubo por tiro que deve cair para a plantadeira estar regulada</tooltip>
+									<style>wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="labelTituloResultadoAdb">
+												<tooltip>A quantidade de gramas de adubo por tiro que deve cair para a plantadeira estar regulada</tooltip>
+												<label>Gramas por tiro: (Adubo)</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="outAdb">
+														<tooltip>A quantidade de gramas de adubo por tiro que deve cair para a plantadeira estar regulada</tooltip>
+														<style>wxTE_READONLY</style>
+														<value>0.0</value>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxButton" name="btnCpAdb">
+														<tooltip>Copiar gramas de adubo por tiro</tooltip>
+														<label>Copiar</label>
+														<default>0</default>
+														<auth_needed>0</auth_needed>
+														<markup>0</markup>
+														<bitmap />
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxALIGN_CENTER|wxALL</flag>
+					<border>5</border>
+					<object class="wxPanel" name="panelPrv">
+						<style>wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelInHa">
+									<tooltip>Quantos hectares planeja serem plantados</tooltip>
+									<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="labelHa">
+												<tooltip>Quantos hectares planeja serem plantados</tooltip>
+												<label>Hectares:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="inHa">
+												<size>100,10</size>
+												<tooltip>Quantos hectares planeja serem plantados</tooltip>
+												<style>wxSP_ARROW_KEYS</style>
+												<value>1</value>
+												<min>1</min>
+												<max>999</max>
+												<inc>1</inc>
+												<digits>0</digits>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelOutPrv">
+									<tooltip>Gasto de insumos previsto segundo a área planejada</tooltip>
+									<style>wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="labelPrv">
+												<tooltip>Gasto de insumos previsto segundo a área planejada</tooltip>
+												<label>Previsão:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="outPrv">
+														<tooltip>Gasto de insumos previsto segundo a área planejada</tooltip>
+														<style>wxTE_READONLY</style>
+														<size>280,-1</size>
+														<font>
+															<style>normal</style>
+															<weight>normal</weight>
+															<underlined>0</underlined>
+														</font>
+														<value>0 kg de semente e 0 kg de adubo</value>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxButton" name="btnCpPrv">
+														<tooltip>Copiar previsão de gasto de insumos</tooltip>
+														<label>Copiar</label>
+														<default>0</default>
+														<auth_needed>0</auth_needed>
+														<markup>0</markup>
+														<bitmap />
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxALIGN_RIGHT|wxALL</flag>
+					<border>5</border>
+					<object class="wxPanel" name="panelBtnCalc">
+						<style>wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxButton" name="btnCalc">
+									<tooltip>Calcular valores</tooltip>
+									<label>Calcular</label>
+									<default>0</default>
+									<auth_needed>0</auth_needed>
+									<markup>0</markup>
+									<bitmap />
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
 			</object>
+		</object>
+	</object>
 </resource>

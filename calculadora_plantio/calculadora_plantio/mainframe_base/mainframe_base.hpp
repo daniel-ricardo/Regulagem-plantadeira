@@ -53,11 +53,11 @@ protected:
     wxPanel* panelPrv;
     wxPanel* panelSmt;
     wxPanel* panelTiro;
-    wxSpinCtrlDouble* inEspc;
-    wxSpinCtrlDouble* inHa;
-    wxSpinCtrlDouble* inKgAdb;
-    wxSpinCtrlDouble* inKgSmt;
-    wxSpinCtrlDouble* inTiro;
+    wxTextCtrl* inEspc;
+    wxTextCtrl* inHa;
+    wxTextCtrl* inKgAdb;
+    wxTextCtrl* inKgSmt;
+    wxTextCtrl* inTiro;
     wxStaticText* labelCult;
     wxStaticText* labelEspc;
     wxStaticText* labelHa;
