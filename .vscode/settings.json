@@ -1,0 +1,8 @@
+{
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true
+    },
+    "cmake.sourceDirectory": "C:/Users/PC/OneDrive/Documentos/08 - programação/git-repos/calculadora_plantio/calculadora_plantio/calculadora_plantio"
+}

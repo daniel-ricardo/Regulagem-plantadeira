@@ -1,0 +1,4 @@
+# Binários executaveis nessa pasta são destinados a testes
+
+*.bin
+*.exe
