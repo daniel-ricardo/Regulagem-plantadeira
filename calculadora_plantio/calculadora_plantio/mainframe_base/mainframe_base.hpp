@@ -73,6 +73,16 @@ protected:
     wxTextCtrl* outPrv;
     wxTextCtrl* outSmt;
 
+    wxPanel* panelInfo;
+
+    wxStaticText* labelTalhao;
+    wxStaticText* labelVariedade;
+    wxStaticText* labelFormula;
+
+    wxTextCtrl* talhao;
+    wxTextCtrl* variedade;
+    wxTextCtrl* formula;
+
 public:
     mainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title =
         "Calculadora de regulagem de plantadeira", const wxPoint& pos = wxDefaultPosition, const wxSize& size =

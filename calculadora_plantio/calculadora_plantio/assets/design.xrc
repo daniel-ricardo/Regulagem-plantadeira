@@ -2,7 +2,7 @@
 <resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
 	<object class="wxFrame" name="mainFrame">
 		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
-		<size>470,400</size>
+		<size>470,480</size>
 		<title>Calculadora de regulagem de plantadeira</title>
 		<centered>1</centered>
 				<object class="wxPanel" name="panelMain">
@@ -13,10 +13,38 @@
 							<option>0</option>
 							<flag>wxALIGN_CENTER|wxALL</flag>
 							<border>5</border>
-							<object class="wxPanel" name="panelGeral">
+							<object class="wxPanel" name="panelInfo">
 								<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
 								<object class="wxBoxSizer">
 									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>1</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelTalhao">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelTalhao">
+														<label>Talhão:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="talhao">
+														<value></value>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
 									<object class="sizeritem">
 										<option>0</option>
 										<flag>wxALIGN_CENTER|wxALL</flag>
@@ -31,8 +59,8 @@
 													<flag>wxALIGN_CENTER|wxALL</flag>
 													<border>5</border>
 													<object class="wxStaticText" name="labelCult">
-														<label>Cultura:</label>
 														<tooltip>Selecione qual Cultura de Sementes vai ser plantada</tooltip>
+														<label>Cultura:</label>
 														<wrap>-1</wrap>
 													</object>
 												</object>
@@ -61,21 +89,19 @@
 										</object>
 									</object>
 									<object class="sizeritem">
-										<option>0</option>
-										<flag>wxALIGN_CENTER|wxALL</flag>
+										<option>1</option>
+										<flag>wxEXPAND | wxALL</flag>
 										<border>5</border>
-										<object class="wxPanel" name="panelEspc">
-											<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
+										<object class="wxPanel" name="panelVariedade">
 											<style>wxTAB_TRAVERSAL</style>
 											<object class="wxBoxSizer">
 												<orient>wxVERTICAL</orient>
 												<object class="sizeritem">
 													<option>0</option>
-													<flag>wxALL</flag>
+													<flag>wxALIGN_CENTER|wxALL</flag>
 													<border>5</border>
-													<object class="wxStaticText" name="labelEspc">
-														<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
-														<label>Espaçamento das linhas (cm):</label>
+													<object class="wxStaticText" name="labelVariedade">
+														<label>Variedade:</label>
 														<wrap>-1</wrap>
 													</object>
 												</object>
@@ -83,19 +109,88 @@
 													<option>0</option>
 													<flag>wxALIGN_CENTER|wxALL</flag>
 													<border>5</border>
-													<object class="wxSpinCtrlDouble" name="inEspc">
-														<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
-														<style>wxALIGN_RIGHT</style>
-														<value>1.000000</value>
-														<min>1</min>
-														<max>1000</max>
-														<inc>1</inc>
-														<digits>0</digits>
+													<object class="wxTextCtrl" name="variedade">
+														<value></value>
 													</object>
 												</object>
 											</object>
 										</object>
 									</object>
+									<object class="sizeritem">
+										<option>1</option>
+										<flag>wxEXPAND | wxALL</flag>
+										<border>5</border>
+										<object class="wxPanel" name="panelFormula">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="labelFormula">
+														<label>Fórmula</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER|wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="formula">
+														<value></value>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object> <!-- panelInfo -->
+							</object> <!-- sizeritem -->
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER|wxALL</flag>
+								<border>5</border>
+								<object class="wxPanel" name="panelGeral">
+									<style>wxBORDER_SUNKEN|wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxHORIZONTAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER|wxALL</flag>
+											<border>5</border>
+											<object class="wxPanel" name="panelEspc">
+												<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
+												<style>wxTAB_TRAVERSAL</style>
+												<object class="wxBoxSizer">
+													<orient>wxVERTICAL</orient>
+													<object class="sizeritem">
+														<option>0</option>
+														<flag>wxALL</flag>
+														<border>5</border>
+														<object class="wxStaticText" name="labelEspc">
+															<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
+															<label>Espaçamento das linhas (cm):</label>
+															<wrap>-1</wrap>
+														</object> <!-- labelEspc -->
+													</object> <!-- sizeritem -->
+													<object class="sizeritem">
+														<option>0</option>
+														<flag>wxALIGN_CENTER|wxALL</flag>
+														<border>5</border>
+														<object class="wxSpinCtrlDouble" name="inEspc">
+															<tooltip>Coloque o espaçamento das linhas (em centímetros)</tooltip>
+															<style>wxALIGN_RIGHT</style>
+															<value>1.000000</value>
+															<min>1</min>
+															<max>1000</max>
+															<inc>1</inc>
+															<digits>0</digits>
+														</object> <!-- inEspc -->
+													</object> <!-- sizeritem -->
+												</object> <!-- wxBoxSizer panelEspc -->
+											</object> <!-- panelEspc -->
+										</object> <!-- sizeritem -->
 									<object class="sizeritem">
 										<option>0</option>
 										<flag>wxALIGN_CENTER|wxALL</flag>
@@ -113,8 +208,8 @@
 														<tooltip>Coloque o comprimento da área de regulagem em metros</tooltip>
 														<label>Tiro (m):</label>
 														<wrap>-1</wrap>
-													</object>
-												</object>
+													</object> <!-- labelTiro -->
+												</object> <!-- panelTiro -->
 												<object class="sizeritem">
 													<option>0</option>
 													<flag>wxALIGN_CENTER|wxALL</flag>
@@ -127,14 +222,14 @@
 														<max>1000</max>
 														<inc>1</inc>
 														<digits>0</digits>
-													</object>
-												</object>
-											</object>
-										</object>
-									</object>
-								</object>
-							</object>
-						</object>
+													</object> <!--inTiro-->
+												</object> <!-- sizeritem -->
+											</object> <!-- wxBoxSizer panelTiro -->
+										</object> <!-- panelTiro -->
+									</object> <!-- sizeritem -->
+								</object> <!-- wxBoxSizer panelGeral -->
+							</object> <!-- panelGeral -->
+						</object> <!-- sizeritem -->
 						<object class="sizeritem">
 							<option>0</option>
 							<flag>wxALIGN_CENTER|wxALL</flag>
@@ -251,8 +346,8 @@
 										</object>
 									</object>
 								</object>
-							</object>
-						</object>
+							</object> <!-- panelSmt -->
+						</object> <!-- sizeritem -->
 						<object class="sizeritem">
 							<option>0</option>
 							<flag>wxALIGN_CENTER|wxALL</flag>
@@ -369,8 +464,8 @@
 										</object>
 									</object>
 								</object>
-							</object>
-						</object>
+							</object> <!-- panelAdb -->
+						</object> <!-- sizeritem -->
 						<object class="sizeritem">
 							<option>0</option>
 							<flag>wxALIGN_CENTER|wxALL</flag>
@@ -467,16 +562,16 @@
 																<auth_needed>0</auth_needed>
 																<markup>0</markup>
 																<bitmap />
-															</object>
-														</object>
-													</object>
-												</object>
+															</object> <!-- btnCpPrv -->
+														</object> <!-- sizeritem -->
+													</object> <!-- wxBoxSizer -->
+												</object> <!-- sizeritem -->
 											</object>
 										</object>
 									</object>
 								</object>
-							</object>
-						</object>
+							</object> <!-- panelPrv -->
+						</object> <!-- sizeritem -->
 						<object class="sizeritem">
 							<option>0</option>
 							<flag>wxALIGN_RIGHT|wxALL</flag>
@@ -496,12 +591,12 @@
 											<auth_needed>0</auth_needed>
 											<markup>0</markup>
 											<bitmap />
-										</object>
-									</object>
-								</object>
-							</object>
-						</object>
-					</object>
-				</object>
-			</object>
+										</object> <!-- btnCalc -->
+									</object> <!-- sizeritem -->
+								</object> <!-- wxBoxSizer panelBtnCalc -->
+							</object> <!-- panelBtnCalc -->
+						</object> <!-- sizeritem -->
+			</object> <!-- wxBoxSizer panelMain -->
+		</object> <!-- panelMain -->
+	</object> <!-- mainFrame -->
 </resource>

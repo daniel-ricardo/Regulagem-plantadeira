@@ -36,9 +36,9 @@ void mainFrame::fazerCalculoRegulagem(wxCommandEvent& event)
 {
 	auto* regulagem = new Regulagem();
 	// Configurando regulagem conforme input do usuario
-	regulagem->setCult("teste");
-	regulagem->setFormAdb("00-00-00");
-	regulagem->setVariSmt("original");
+	regulagem->setCult(static_cast<std::string>(boxCult->GetString(boxCult->GetSelection())));
+	regulagem->setFormAdb(static_cast<std::string>(formula->GetValue()));
+	regulagem->setVariSmt(static_cast<std::string>(variedade->GetValue()));
     regulagem->setEspc( static_cast<float>(inEspc->GetValue()) );
     regulagem->setTiro( static_cast<float>(inTiro->GetValue()) );
     regulagem->setGramA(calcularGramasTiro( static_cast<float>(inKgAdb->GetValue()), regulagem) );
@@ -182,13 +182,23 @@ void mainFrame::initFrameFromXRC()
 	btnCpPrv = XRCCTRL(*this, "btnCpPrv", wxButton);
 	panelBtnCalc = XRCCTRL(*this, "panelBtnCalc", wxPanel);
 	btnCalc = XRCCTRL(*this, "btnCalc", wxButton);
+
+	panelInfo = XRCCTRL(*this, "panelInfo", wxPanel);
+
+	labelTalhao = XRCCTRL(*this, "labelTalhao", wxStaticText);
+	labelVariedade = XRCCTRL(*this, "labelVariedade", wxStaticText);
+	labelFormula = XRCCTRL(*this, "labelFormula", wxStaticText);
+
+	talhao = XRCCTRL(*this, "talhao", wxTextCtrl);
+	variedade = XRCCTRL(*this, "variedade", wxTextCtrl);
+	formula = XRCCTRL(*this, "formula", wxTextCtrl);
 	
 	auto* regulagem = new Regulagem;
 
 	// Valores iniciais
-	regulagem->setCult("teste");
-	regulagem->setFormAdb("00-00-00");
-	regulagem->setVariSmt("original");
+	regulagem->setCult(static_cast<std::string>(boxCult->GetString(boxCult->GetSelection())));
+	regulagem->setFormAdb(static_cast<std::string>(formula->GetValue()));
+	regulagem->setVariSmt(static_cast<std::string>(variedade->GetValue()));
 	regulagem->setGramA(calcularGramasTiro(static_cast<float>(inKgAdb->GetValue()), regulagem));
 	regulagem->setGramS(calcularGramasTiro(static_cast<float>(inKgSmt->GetValue()), regulagem));
 
