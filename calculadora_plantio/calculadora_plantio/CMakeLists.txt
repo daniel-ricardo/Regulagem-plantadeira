@@ -23,8 +23,6 @@ set(wxWidgets_CONFIGURATION mswu)
 
 include(${wxWidgets_USE_FILE})
 
-#include_directories(regulagem mainframe_base)
-
 add_subdirectory(regulagem)
 add_subdirectory(mainframe_base)
 

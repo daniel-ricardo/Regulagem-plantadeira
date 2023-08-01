@@ -24,13 +24,13 @@
     <ClInclude Include="Resource.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="calculadora_plantio.h">
+    <ClInclude Include="calculadora_plantio.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="regulagem.hpp">
+    <ClInclude Include="mainframe_base\mainframe_base.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="framemain_base.hpp">
+    <ClInclude Include="regulagem\regulagem.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,7 +38,10 @@
     <ClCompile Include="calculadora_plantio.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="regulagem.cpp">
+    <ClCompile Include="mainframe_base\mainframe_base.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="regulagem\regulagem.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>

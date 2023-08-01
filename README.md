@@ -9,17 +9,17 @@ Colocando as quantidades em quilo por hectare de semente e adubo, o programa vai
 	<thead>
 		<tr>
 			<th>Janela padrão no Windows</th>
-			<!--th>Janela com valores calculados</th-->
+			<th>Janela no linux (gerenciador XFCE)</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>
-				<img src="assets/latest_win64.png" alt="janela padrão" title="v1.2 no Windows">
+				<img src="assets/latest_win64.png" alt="windows" title="v1.2 no Windows">
 			</td>
-			<!--td>
-				<img src="assets/v1.1.0_win64_values.png" alt="valores calculados" title="v1.1.0 no Windows">
-			</td-->
+			<td>
+				<img src="assets/latest_linuxXFCE.png" alt="linux" title="v1.3 no Linux">
+			</td>
 		</tr>
 	</tbody>
 </table>
