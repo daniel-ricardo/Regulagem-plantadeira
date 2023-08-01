@@ -3,9 +3,9 @@
       {
           "name": "Mac",
           "includePath": [
-              "${workspaceFolder}/src/**",
-              "${workspaceFolder}/build/stage/include/wx-3.1/**",
-              "${workspaceFolder}/build/subprojects/Build/wxWidgets_external/lib/wx/include/osx_cocoa-unicode-static-3.1/**"
+            "${workspaceFolder}/calculadora_plantio/calculadora_plantio/**",
+            "${workspaceFolder}/calculadora_plantio/calculadora_plantio/build/stage/include/wx-3.1/**",
+            "${workspaceFolder}/calculadora_plantio/calculadora_plantio/build/subprojects/Build/wxWidgets_external/lib/wx/include/osx_cocoa-unicode-static-3.1/**"
           ],
           "defines": [
               "__WXOSX_COCOA__",
@@ -21,8 +21,8 @@
       {
           "name": "Win32",
           "includePath": [
-              "${workspaceFolder}/src/**",
-              "${workspaceFolder}/build/stage/include/**"
+              "${workspaceFolder}/calculadora_plantio/calculadora_plantio/**",
+              "${workspaceFolder}/calculadora_plantio/calculadora_plantio/build/**"
           ],
           "defines": [
               "__WXMSW__",
@@ -37,9 +37,9 @@
       {
         "name": "Linux",
         "includePath": [
-            "${workspaceFolder}/src/**",
-            "${workspaceFolder}/build/stage/include/wx-3.1/**",
-            "${workspaceFolder}/build/subprojects/Build/wxWidgets_external/lib/wx/include/gtk3-unicode-static-3.1/**"
+            "${workspaceFolder}/calculadora_plantio/calculadora_plantio/**",
+            "${workspaceFolder}/calculadora_plantio/calculadora_plantio/build**",
+            "${workspaceFolder}calculadora_plantio/calculadora_plantio/build/subprojects/Build/wxWidgets_external/lib/wx/include/gtk3-unicode-static-3.1/**"
         ],
         "defines": [
             "__WXGTK__"

@@ -1,11 +1,11 @@
 {
     "version": "0.2.0",
-    "configurations": [
+    "configurations": [        
         {
             "name": "(lldb-mac) Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/subprojects/Build/wx_cmake_template_core/main.app",
+            "program": "${workspaceFolder}/calculadora_plantio/x64/Release/calculadora_plantio.app",
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "Build with CMake"
         },
@@ -13,7 +13,7 @@
             "name": "(lldb-linux) Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/subprojects/Build/wx_cmake_template_core/main",
+            "program": "${workspaceFolder}/calculadora_plantio/x64/Release/calculadora_plantio",
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "Build with CMake"
         },
@@ -21,7 +21,7 @@
             "name": "(msvc) Launch",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}\\build\\subprojects\\Build\\wx_cmake_template_core\\Debug\\main.exe",
+            "program": "${workspaceFolder}\\calculadora_plantio\\x64\\Release\\calculadora_plantio.exe",
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "Build with CMake"
         }
