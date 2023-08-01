@@ -26,7 +26,7 @@ bool calculadoraRegulagem::OnInit()
     */
    
     mainFrame* frame = new mainFrame(NULL, wxID_ANY, "Calculadora de regulagem de plantadeira", wxDefaultPosition,
-        wxSize(550, 650), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL, wxFrameNameStr);
+        wxSize(550, 540), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL, wxFrameNameStr);
 
 	frame->initValues();
 	frame->Show(true);

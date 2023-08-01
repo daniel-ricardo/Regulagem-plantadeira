@@ -15,7 +15,7 @@ Colocando as quantidades em quilo por hectare de semente e adubo, o programa vai
 	<tbody>
 		<tr>
 			<td>
-				<img src="assets/latest_win64.png" alt="windows" title="v1.2 no Windows">
+				<img src="assets/latest_win64.png" alt="windows" title="v1.3 no Windows">
 			</td>
 			<td>
 				<img src="assets/latest_linuxXFCE.png" alt="linux" title="v1.3 no Linux">
