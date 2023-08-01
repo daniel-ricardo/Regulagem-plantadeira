@@ -50,8 +50,8 @@ void mainFrame::fazerCalculoRegulagem(wxCommandEvent& event)
     outAdb->SetValue( fmt::format("{0:.2f}", regulagem->getGramAdb()) );
     outSmt->SetValue( fmt::format("{0:.2f}", regulagem->getGramSmt()) );
     outPrv->SetValue ( fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
-    	fmt::group_digits(*ha * calcularQuilosHectare(regulagem)[0]),
-        fmt::group_digits(*ha * calcularQuilosHectare(regulagem)[1])) );
+    	fmt::group_digits(inKgAdb->GetValue() * calcularQuilosHectare(regulagem)[0]),
+        fmt::group_digits(inKgAdb->GetValue() * calcularQuilosHectare(regulagem)[1])) );
 }
 
 void mainFrame::copiarAduboClipboard(wxCommandEvent& event)
@@ -402,9 +402,6 @@ mainFrame::mainFrame(wxWindow* parent, wxWindowID id, const wxString& title, con
     Centre(wxBOTH);
 }
 
-}
-
-
 mainFrame::~mainFrame()
 {
 	/*
@@ -439,6 +436,18 @@ void mainFrame::initValues()
 	regulagem->setVariSmt(static_cast<std::string>(inVari->GetValue()));
 	regulagem->setGramA(calcularGramasTiro(static_cast<float>(inKgAdb->GetValue()), regulagem));
 	regulagem->setGramS(calcularGramasTiro(static_cast<float>(inKgSmt->GetValue()), regulagem));
+
+	// mostrando valores iniciais
+	inEspc->SetValue(fmt::format("{0:.2g}", regulagem->getEspc()));
+	inTiro->SetValue(fmt::format("{0:.2g}", regulagem->getTiro()));
+	inKgAdb->SetValue(fmt::format("{0:.2g}", calcularQuilosHectare(regulagem)[1]));
+	inKgSmt->SetValue(fmt::format("{0:.2g}", calcularQuilosHectare(regulagem)[0]));
+	outAdb->SetValue(fmt::format("{0:.2f}", regulagem->getGramAdb()));
+	outSmt->SetValue(fmt::format("{0:.2f}", regulagem->getGramSmt()));
+	inHa->SetValue(fmt::format("{0:.2g}", 0.0));
+	outPrv->SetValue(fmt::format(std::locale(""), "{0} kg de semente e {1} kg de adubo",
+		fmt::group_digits(inHa->GetValue() * calcularQuilosHectare(regulagem)[0]),
+		fmt::group_digits(inHa->GetValue() * calcularQuilosHectare(regulagem)[1])));
 
     /*
      * Conectar Eventos:
