@@ -37,22 +37,7 @@ protected:
     wxButton* btnCpAdb;
     wxButton* btnCpPrv;
     wxButton* btnCpSmt;
-    wxChoice* boxCult;
-    wxPanel* panelAdb;
-    wxPanel* panelBtnCalc;
-    wxPanel* panelCult;
-    wxPanel* panelEspc;
-    wxPanel* panelGeral;
-    wxPanel* panelInAdb;
-    wxPanel* panelInHa;
-    wxPanel* panelInSmt;
-    wxPanel* panelMain;
-    wxPanel* panelOutAdb;
-    wxPanel* panelOutPrv;
-    wxPanel* panelOutSmt;
-    wxPanel* panelPrv;
-    wxPanel* panelSmt;
-    wxPanel* panelTiro;
+    wxChoice* choiceCult;
     wxSpinCtrlDouble* inEspc;
     wxSpinCtrlDouble* inHa;
     wxSpinCtrlDouble* inKgAdb;
@@ -60,28 +45,24 @@ protected:
     wxSpinCtrlDouble* inTiro;
     wxStaticText* labelCult;
     wxStaticText* labelEspc;
+    wxStaticText* labelForm;
     wxStaticText* labelHa;
     wxStaticText* labelKghaAdb;
     wxStaticText* labelKghaSmt;
     wxStaticText* labelPrv;
+    wxStaticText* labelTalh;
     wxStaticText* labelTiro;
     wxStaticText* labelTituloResultadoAdb;
     wxStaticText* labelTituloResultadoSmt;
+    wxStaticText* labelVari;
     wxStaticText* tituloAdb;
     wxStaticText* tituloSmt;
+    wxTextCtrl* inForm;
+    wxTextCtrl* inTalh;
+    wxTextCtrl* inVari;
     wxTextCtrl* outAdb;
     wxTextCtrl* outPrv;
     wxTextCtrl* outSmt;
-
-    wxPanel* panelInfo;
-
-    wxStaticText* labelTalhao;
-    wxStaticText* labelVariedade;
-    wxStaticText* labelFormula;
-
-    wxTextCtrl* talhao;
-    wxTextCtrl* variedade;
-    wxTextCtrl* formula;
 
 public:
     mainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title =
@@ -89,5 +70,5 @@ public:
         wxSize(500, 300), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL,
         const wxString& name = wxFrameNameStr);
     ~mainFrame();
-    void initFrameFromXRC();
+    void initValues();
 };
