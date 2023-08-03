@@ -23,7 +23,7 @@
             "type": "shell",
             "command": "cmake",
             "args": [
-                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_BUILD_TYPE=Release",
                 "-S.",
                 "-Bbuild"
             ]

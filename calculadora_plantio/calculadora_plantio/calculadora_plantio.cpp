@@ -2,8 +2,7 @@
 #include <wx/wxprec.h>
 #include <wx/clipbrd.h>
 #include <wx/bmpbuttn.h>
-#include <wx/sizer.h>    
-#include <wx/xrc/xmlres.h>
+#include <wx/sizer.h>
 #include <fmt/format.h>
 #include <locale>
 
@@ -18,13 +17,7 @@ public:
 };
 
 bool calculadoraRegulagem::OnInit()
-{
-    /*
-    wxXmlResource::Get()->InitAllHandlers();
-    wxXmlResource::Get()->Load("assets/design.xrc");
-    wxXmlResource::Get()->LoadAllFiles("rc");
-    */
-   
+{   
     mainFrame* frame = new mainFrame(NULL, wxID_ANY, "Calculadora de regulagem de plantadeira", wxDefaultPosition,
         wxSize(550, 650), wxDEFAULT_FRAME_STYLE & ~wxRESIZE_BORDER | wxTAB_TRAVERSAL, wxFrameNameStr);
 
@@ -420,7 +413,6 @@ mainFrame::~mainFrame()
 	Unbind(wxEVT_BUTTON, &mainFrame::copiarAduboClipboard, this, -1, -1, 0);
 	Unbind(wxEVT_BUTTON, &mainFrame::copiarSementeClipboard, this, -1, -1, 0);
 	Unbind(wxEVT_BUTTON, &mainFrame::copiarPrevisaoClipboard, this, -1, -1, 0);
-	//wxXmlResource::Get()->Unload("assets/design.xrc");
 }
 
 wxIMPLEMENT_APP(calculadoraRegulagem);
