@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Regulagem de plantadeira</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="assets/bootstrap.css" rel="stylesheet">
+    <script src="assets/jquery.js"></script>
+    <script src="assets/bootstrap.bundle.js"></script>
+  </head>
+  <body class="bg-gray-100">
+
+    <div id="app" class="mx-auto text-center p-4">
+      <h1 class="text-6xl p-4 font-bold text-gray-700">Calcular Regulagem de Plantadeira</h1>
+
+      <p>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white
+                       font-bold py-2 px-4 rounded my-4 mx-1 w-1/4 text-4xl"
+         @click="calcular">
+        Calcular</button>
+	  
+	  <p>
+	  
+		<table align="center">
+		  <tr>
+			<th></th>
+			<th></th>
+			<th></th>
+		  </tr>
+		  <tr>
+			<td>Cultura</td>
+			<td><input :value="cultura" v-model="cultura"></td>
+		  </tr>
+		  <tr>
+			<td>Variedade</td>
+			<td><input :value="variedade" v-model="variedade"></td>
+			<td><input disabled :value="gramSmt" v-model="gramSmt"></td>
+		  </tr>
+		  <tr>
+			<td>Adubo</td>
+			<td><input :value="formula" v-model="formula"></td>
+			<td><input disabled :value="gramAdb" v-model="gramAdb"></td>
+		  </tr>
+		  <tr>
+			<td>Espacamento</td>
+			<td><input disabled :value="espacamento" v-model="espacamento"></td>
+		  </tr>
+		  <tr>
+			<td>Tiro</td>
+			<td><input disabled :value="tiro" v-model="tiro"></td>
+		  </tr>
+		</table> 
+	  
+	  </p>
+
+    </div>
+
+    <script>
+      const { createApp, ref } = Vue
+
+      createApp({
+        setup() {
+          const cultura = ref('')
+          const variedade = ref('')
+          const formula = ref('')
+          const espacamento = ref('')
+          const tiro = ref('')
+          const gramSmt = ref('')
+          const gramAdb = ref('')
+          return {
+            cultura,
+            variedade,
+            formula,
+            espacamento,
+			tiro,
+			gramSmt,
+			gramAdb
+          }
+        },
+
+        methods: {
+          calcular: function(){
+            this.valid = 'null'
+            fetch('http://localhost/cgi-bin/api')
+              .then(responde => {
+                 responde.json()
+                 .then(data => {
+                   this.cultura = data.cultura
+                   this.variedade = data.variedade
+                   this.formula = data.formula
+                   this.gramSmt = data.gramSmt
+                   this.gramAdb = data.gramAdb
+                   this.tiro = data.tiro
+                   this.espacamento = data.espacamento
+                 })
+              })
+          }
+
+      }).mount('#app')
+    </script> 
+  </body>
+</html>
